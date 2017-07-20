@@ -15,7 +15,7 @@
 
 int				main(void)
 {
-//	printf("%d\n", 42);
+	printf("%4d\n", 42);
 //	ft_printf("%d\n", 42);
 //	printf("%%\n");
 //	ft_printf("%%\n");

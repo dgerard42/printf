@@ -13,15 +13,15 @@
 #ifndef FTPRINTF_H
 # define FTPRINTF_H
 
-//# include "libft/libft.h"
+# include "libft/libft.h"
 
 typedef	struct		s_arg
 {
-	int		flag;
-	int		width;
-	int		presicion;
-	int		length;
-	int		specifier;
+	unsigned char	flag;
+	int				width;
+	int			 	presicion;
+	unsigned char	length;
+	int				specifier;
 }					t_arg;
 
 int			ft_printf(const char *format, ...);
