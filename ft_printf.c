@@ -24,79 +24,88 @@ int				check_dubs(const char *format, char c)
 	return (1);
 }
 
-
-const char 			*check_flags(const char *format, t_arg *arg)
+const char 			*check_flags(const char *format, t_flags *flags)
 {
-	arg->flag = 0b00000000;
+	flags->flag = 0b00000000;
 	while (*format == '-' || *format == '+' || *format == ' ' ||
 		*format == '#' || *format == '0')
 	{
 		if (*format == '-' && check_dubs(format, '-'))
-			arg->flag += 0b00000001;
+			flags->flag += 0b00000001;
 		if (*format == '+' && check_dubs(format, '+'))
-			arg->flag += 0b00000010;
+			flags->flag += 0b00000010;
 		if (*format == ' ' && check_dubs(format, ' '))
-			arg->flag += 0b00000100;
+			flags->flag += 0b00000100;
 		if (*format == '#' && check_dubs(format, '#'))
-			arg->flag += 0b00001000;
+			flags->flag += 0b00001000;
 		if (*format == '0' && check_dubs(format, '0'))
-			arg->flag += 0b00010000;
+			flags->flag += 0b00010000;
 		format++;
 	}
 	return (format);
 }
 
-const char 			*check_width(const char *format, t_arg *arg)
+//try doubling up functions for width and presicion
+const char 			*check_width(const char *format, t_flags *flags)
 {
-	arg->width = -2;
+	flags->width = -2;
 	if (ft_isdigit((int)*format)
-		arg->width = ft_atoi(*format);
+		flags->width = ft_atoi(*format);
 	else if (*format == '*')
-		arg->width = -1;
-	if (arg->width != -2)
+		flags->width = -1;
+	if (flags->width != -2)
 		format++;
 	return (format);
 }
 
-const char 			*check_presicion(const char *format, t_arg *arg)
+const char 			*check_presicion(const char *format, t_flags *flags)
 {
-	arg->presicion = -2;
+	flags->presicion = -2;
 	if (*format == '.')
 		format++;
 	if (ft_isdigit((int)*format)
-		arg->presicion = ft_atoi(*format);
+		flags->presicion = ft_atoi(*format);
 	else if (*format == '*')
-		arg->presicion = -1;
-	if (arg->presicion != -2)
+		flags->presicion = -1;
+	if (flags->presicion != -2)
 		format++;
 	return (format);
 }
 
-const char 			*check_length(const char *format, t_arg *arg)
+/*
+const char 			*check_length(const char *format, t_flags *flags)
 {
-
+	if (*format == 'h' && *format + 1 == 'h')
+	if (*format == 'h' && *format + 1 != 'h')
+	if (*format == 'l' && *format + 1 == 'l')
+	if (*format == 'l' && *format + 1 != 'l')
+	if (*format == 'j')
+	if (*format == 'z')
 }
+*/
 
-const char 			*check_specifier(const char *format, t_arg *arg)
+const char 			*check_specifier(const char *format, t_flags *flags)
 {
-	//c, d or i, e, E, f, g, G, o, s, u, x, X, p, n, %
-	if (*format == 'c')	
-	else if (*format == 'd' || *format == 'i')
-	else if (*format == 'e')
-	else if (*format == 'E')
-	else if (*format == 'f')
-	else if (*format == 'g')
-	else if (*format == 'G')
-	else if (*format == 'o')
-	else if (*format == 's')
-	else if (*format == 'u')
-	else if (*format == 'x')
-	else if (*format == 'X')
+	flags->specifier = 0;
+	if (*format == 'c'|| *format == 'C')
+		flags->specifier = 1;
+	else if (*format == 'd' || *format == 'i' || *format == 'D')
+		flags->specifier = 2;
+	else if (*format == 'o' || *format == 'O')
+		flags->specifier = 3;
+	else if (*format == 's' || *format == 'S')
+		flags->specifier = 4;
+	else if (*format == 'u' || *format == 'U')
+		flags->specifier = 5;
+	else if (*format == 'x' || *format == 'X')
+		flags->specifier = 6;
 	else if (*format == 'p')
-	else if (*format == 'n')
+		flags->speicifier = 7;
 	else if (*format == '%')
-	else
-		error. theres a fucking error.
+		flags->specifier = 8;
+	if (flags->specifier != 0)
+		format++;
+	return (format);
 }
 
 const char 			*print_string(const char *format)
@@ -109,17 +118,20 @@ const char 			*print_string(const char *format)
 
 int					ft_printf(const char *format, ...)
 {
-	t_arg;
+	t_flags flags;
 
+	va_list arg;
+	va_start (arg, format);
 // make sure the format string is null terminated
 	while (*format)
 	{
 		format = print_string(format);
-		format = check_flags(format, &arg);
-		format = check_width(format, &arg);
-		format = check_presicion(format, &arg);
-		format = check_length(format, &arg);
-		format = check_specifier(format, &arg);
+		format = check_flags(format, &flags);
+		format = check_width(format, &flags);
+		format = check_presicion(format, &flags);
+		format = check_length(format, &flags);
+		format = check_specifier(format, &flags);
+		
 		//here get the actual next argument and process it according to info stored in struct
 	}
 }
