@@ -1,31 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   parse_args.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dgerard <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/07/18 11:32:52 by dgerard           #+#    #+#             */
-/*   Updated: 2017/07/18 11:32:54 by dgerard          ###   ########.fr       */
+/*   Created: 2017/07/23 17:17:59 by dgerard           #+#    #+#             */
+/*   Updated: 2017/07/23 17:18:19 by dgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FTPRINTF_H
-# define FTPRINTF_H
+#include "ft_printf.h"
 
-//# include "libft/libft.h"
-
-typedef	struct		s_flags
+void			parse_args(t_flags *flags, )
 {
-	unsigned char	flag;
-	int				width;
-	int			 	presicion;
-	unsigned char	length;
-	int				specifier;
-}					t_flags;
+	va_list arg;
+	va_start (arg, format);
 
-//typedef char	*(*t_spec_functs)(size_t *, va_list);
+	
 
-int			ft_printf(const char *format, ...);
-
-#endif
+	va_end(arg);
+}

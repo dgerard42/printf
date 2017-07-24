@@ -12,6 +12,14 @@
 
 #include "ft_printf.h"
 
+/*
+t_specifier		spec_functs[6]
+{
+	&print_char, &print_digit, &print_octal, &print_string, &print_unsigned,
+	&print_hex, &print_pointer
+};
+*/
+
 int				check_dubs(const char *format, char c)
 {
 	while (*format == '-' || *format == '+' || *format == ' ' ||
@@ -101,8 +109,6 @@ const char 			*check_specifier(const char *format, t_flags *flags)
 		flags->specifier = 6;
 	else if (*format == 'p')
 		flags->speicifier = 7;
-	else if (*format == '%')
-		flags->specifier = 8;
 	if (flags->specifier != 0)
 		format++;
 	return (format);
@@ -112,7 +118,13 @@ const char 			*print_string(const char *format)
 {
 	while (*format != '%' && *format)
 		ft_putchar(*format++);
-	format++;
+	if (*format == '%' && *format + 1 == '%')
+	{
+		ft_putchar('%');
+		format++;
+	}
+	if (*format)
+		format++;
 	return(format);
 }
 
@@ -120,8 +132,6 @@ int					ft_printf(const char *format, ...)
 {
 	t_flags flags;
 
-	va_list arg;
-	va_start (arg, format);
 // make sure the format string is null terminated
 	while (*format)
 	{
@@ -131,7 +141,7 @@ int					ft_printf(const char *format, ...)
 		format = check_presicion(format, &flags);
 		format = check_length(format, &flags);
 		format = check_specifier(format, &flags);
-		
+		parse_args(&flags, //spec_functs[flags.specifier])
 		//here get the actual next argument and process it according to info stored in struct
 	}
 }
