@@ -12,13 +12,6 @@
 
 #include "ft_printf.h"
 
-/*
-t_specifier		spec_functs[6]
-{
-	&print_char, &print_digit, &print_octal, &print_string, &print_unsigned,
-	&print_hex, &print_pointer
-};
-*/
 
 int				check_dubs(const char *format, char c)
 {
@@ -34,7 +27,7 @@ int				check_dubs(const char *format, char c)
 
 const char 			*check_flags(const char *format, t_flags *flags)
 {
-	flags->flag = 0b00000000;
+	flags->flag = 0b0000000;
 	while (*format == '-' || *format == '+' || *format == ' ' ||
 		*format == '#' || *format == '0')
 	{
@@ -54,28 +47,19 @@ const char 			*check_flags(const char *format, t_flags *flags)
 }
 
 //try doubling up functions for width and presicion
-const char 			*check_width(const char *format, t_flags *flags)
+const char 			*check_width_presicion(const char *format, t_flags *flags)
 {
-	flags->width = -2;
+	flags->width = -1;
+	flags->presicion = -1;
 	if (ft_isdigit((int)*format)
 		flags->width = ft_atoi(*format);
-	else if (*format == '*')
-		flags->width = -1;
-	if (flags->width != -2)
+	if (flags->width != -1)
 		format++;
-	return (format);
-}
-
-const char 			*check_presicion(const char *format, t_flags *flags)
-{
-	flags->presicion = -2;
 	if (*format == '.')
 		format++;
 	if (ft_isdigit((int)*format)
 		flags->presicion = ft_atoi(*format);
-	else if (*format == '*')
-		flags->presicion = -1;
-	if (flags->presicion != -2)
+	if (flags->presicion != -1)
 		format++;
 	return (format);
 }
@@ -114,7 +98,7 @@ const char 			*check_specifier(const char *format, t_flags *flags)
 	return (format);
 }
 
-const char 			*print_string(const char *format)
+const char 			*print_format_string(const char *format)
 {
 	while (*format != '%' && *format)
 		ft_putchar(*format++);
@@ -137,11 +121,9 @@ int					ft_printf(const char *format, ...)
 	{
 		format = print_string(format);
 		format = check_flags(format, &flags);
-		format = check_width(format, &flags);
-		format = check_presicion(format, &flags);
-		format = check_length(format, &flags);
+		format = check_width_precsicion(format, &flags);
+	//	format = check_length(format, &flags);
 		format = check_specifier(format, &flags);
-		parse_args(&flags, //spec_functs[flags.specifier])
-		//here get the actual next argument and process it according to info stored in struct
+		parse_args(&flags);
 	}
 }

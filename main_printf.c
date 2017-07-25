@@ -13,6 +13,15 @@
 #include "ft_printf.h"
 #include <stdio.h>
 
+
+int			main(void)
+{
+	printf("%c\n", '*');
+	printf("%-42c\n", '*');
+	printf("%2c\n", '*');
+}
+
+/*
 int				main(void)
 {
 	printf("%jzl\n", 42);
@@ -26,3 +35,4 @@ int				main(void)
 //	printf("shit here%dAND here!!\n", 42);
 //	ft_printf("shit here%dAND here!!\n", 42);
 }
+*/
