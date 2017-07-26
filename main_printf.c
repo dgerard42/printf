@@ -25,20 +25,33 @@ int			main(void)
 //	ft_printf("%2c\n", '*');
 //	ft_printf("%-c\n", '*');
 	//INT TESTS
+	printf("%d\n", 42);
+	printf("%d\n", -42);
+	printf("%+d\n", 42);
+	printf("%+d\n", -42);
+	printf("% d\n", 42);
+	printf("% d\n", -42);
+	printf("%-8d\n", 42);
+	printf("%8d\n", 42);
+	printf("%-d\n", 42);
+	printf("%08d\n", 42);
+	printf("%.1d\n", 42000);
+	printf("%.0d\n", 42000);
+	printf("%.d\n", 42000);
+	printf("%.2d\n", 42000);
+	printf("%.10d\n", 42000);
+	//INTEGRATED STRING TESTS
 	//STRING TESTS
 	//HEX TESTS
 	//POINTER TESTS
 	//UNSIGNED INT TESTS
 	//OCTALS TESTS
-	//INTEGRATED STRING TESTS
 }
 
 /*
 int				main(void)
 {
 	//INITIAL TESTS
-	printf("%jzl\n", 42);
-//	ft_printf("%d\n", 42);
 //	printf("%%\n");
 //	ft_printf("%%\n");
 //	printf("whats up bitches\n");
