@@ -19,6 +19,8 @@ int			main(void)
 	printf("%c\n", '*');
 	printf("%-42c\n", '*');
 	printf("%2c\n", '*');
+	printf("%-c\n", '*');
+	printf("%0d\n", '0');
 }
 
 /*

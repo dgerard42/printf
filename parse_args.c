@@ -21,7 +21,10 @@ t_specifier		spec_functs[6]
 
 void			print_char(t_flags *flags, char c)
 {
-	if (flags->width > -1)
+	while (flags->width-- > 0 && flags->flag != )
+	{
+
+	}
 	ft_putchar(c);
 }
 
