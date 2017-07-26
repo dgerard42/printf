@@ -21,13 +21,15 @@ t_specifier		spec_functs[6]
 
 void			print_char(t_flags *flags, char c)
 {
-	while (flags->width-- > 0 && flags->flag != )
-	{
-
-	}
-	ft_putchar(c);
+ 	if (flags->flag & 0b1)
+		ft_putchar(c);
+	while (flags->width-- > 1)
+		ft_putchar(' ');
+	if (!(flags->flag & 0b1))
+		ft_putchar(c);
 }
 
+/*
 void			print_digit(t_flags *flags, int i)
 {
 	ft_putnbr(int i);
@@ -58,14 +60,16 @@ void			print_pointer()
 {
 
 }
+*/
 
-void			parse_args(t_flags *flags, )
+void			parse_args(t_flags *flags, va_list *arg)
 {
-	va_list arg;
-	va_start (arg, format);
+	int	i;
 
-	//route into functions here,
-	if()
-
-	va_end(arg);
+	i = 0;
+	if(flags->specifier == 1)
+	{
+		i = va_arg(*(arg), int);
+		print_char(flags, i);
+	}
 }

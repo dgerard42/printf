@@ -13,7 +13,8 @@
 #ifndef FTPRINTF_H
 # define FTPRINTF_H
 
-//# include "libft/libft.h"
+# include "libft/libft.h"
+# include <stdarg.h>
 
 typedef	struct		s_flags
 {
@@ -27,5 +28,6 @@ typedef	struct		s_flags
 //typedef char	*(*t_spec_functs)(size_t *, va_list);
 
 int			ft_printf(const char *format, ...);
+void			parse_args(t_flags *flags, va_list *arg);
 
 #endif

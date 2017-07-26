@@ -14,7 +14,12 @@ NAME = libftprintf.a
 
 CFLAGS = -Wall -Werror -Wextra
 
-SRCS = 	
+SRCS = 	ft_printf.c\
+		parse_args.c\
+		libft/ft_atoi.c\
+		libft/ft_isdigit.c\
+		libft/ft_putchar.c\
+		libft/ft_putstr.c\
 
 OFILES = $(SRCS:.c=.o)
 

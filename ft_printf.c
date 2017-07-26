@@ -51,14 +51,14 @@ const char 			*check_width_presicion(const char *format, t_flags *flags)
 {
 	flags->width = -1;
 	flags->presicion = -1;
-	if (ft_isdigit((int)*format)
-		flags->width = ft_atoi(*format);
+	if (ft_isdigit((int)*format))
+		flags->width = ft_atoi(format);
 	if (flags->width != -1)
 		format++;
 	if (*format == '.')
 		format++;
-	if (ft_isdigit((int)*format)
-		flags->presicion = ft_atoi(*format);
+	if (ft_isdigit((int)*format))
+		flags->presicion = ft_atoi(format);
 	if (flags->presicion != -1)
 		format++;
 	return (format);
@@ -92,7 +92,7 @@ const char 			*check_specifier(const char *format, t_flags *flags)
 	else if (*format == 'x' || *format == 'X')
 		flags->specifier = 6;
 	else if (*format == 'p')
-		flags->speicifier = 7;
+		flags->specifier = 7;
 	if (flags->specifier != 0)
 		format++;
 	return (format);
@@ -115,15 +115,19 @@ const char 			*print_format_string(const char *format)
 int					ft_printf(const char *format, ...)
 {
 	t_flags flags;
+	va_list arg;
+	va_start (arg, format);
 
 // make sure the format string is null terminated
 	while (*format)
 	{
-		format = print_string(format);
+		format = print_format_string(format);
 		format = check_flags(format, &flags);
-		format = check_width_precsicion(format, &flags);
+		format = check_width_presicion(format, &flags);
 	//	format = check_length(format, &flags);
 		format = check_specifier(format, &flags);
-		parse_args(&flags);
+		parse_args(&flags, &arg);
 	}
+	va_end(arg);
+	return (0);
 }

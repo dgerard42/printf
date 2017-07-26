@@ -13,19 +13,30 @@
 #include "ft_printf.h"
 #include <stdio.h>
 
-
 int			main(void)
 {
-	printf("%c\n", '*');
-	printf("%-42c\n", '*');
-	printf("%2c\n", '*');
-	printf("%-c\n", '*');
-	printf("%0d\n", '0');
+	//CHAR TESTS
+//	printf("%c\n", '*');
+//	printf("%-42c\n", '*');
+//	printf("%2c\n", '*');
+//	printf("%-c\n", '*');
+//	ft_printf("%c\n", '*');
+//	ft_printf("%-42c\n", '*');
+//	ft_printf("%2c\n", '*');
+//	ft_printf("%-c\n", '*');
+	//INT TESTS
+	//STRING TESTS
+	//HEX TESTS
+	//POINTER TESTS
+	//UNSIGNED INT TESTS
+	//OCTALS TESTS
+	//INTEGRATED STRING TESTS
 }
 
 /*
 int				main(void)
 {
+	//INITIAL TESTS
 	printf("%jzl\n", 42);
 //	ft_printf("%d\n", 42);
 //	printf("%%\n");
