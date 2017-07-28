@@ -23,11 +23,13 @@ typedef	struct		s_flags
 	int			 	presicion;
 	unsigned char	length;
 	int				specifier;
+	int				written_chars;
 }					t_flags;
 
 //typedef char	*(*t_spec_functs)(size_t *, va_list);
 
 int				ft_printf(const char *format, ...);
 void			parse_args(t_flags *flags, va_list *arg);
+void			ft_putchar_mem(t_flags *flags, char c);
 
 #endif

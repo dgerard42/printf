@@ -101,10 +101,10 @@ const char 			*check_specifier(const char *format, t_flags *flags)
 const char 			*print_format_string(const char *format)
 {
 	while (*format != '%' && *format)
-		ft_putchar(*format++);
+		ft_putchar_mem(*format++);
 	if (*format == '%' && *format + 1 == '%')
 	{
-		ft_putchar('%');
+		ft_putchar_mem('%');
 		format++;
 	}
 	if (*format)
@@ -118,6 +118,7 @@ int					ft_printf(const char *format, ...)
 	va_list arg;
 	va_start (arg, format);
 
+	flags.written_chars = 0;
 // make sure the format string is null terminated
 	while (*format)
 	{
@@ -127,7 +128,8 @@ int					ft_printf(const char *format, ...)
 	//	format = check_length(format, &flags);
 		format = check_specifier(format, &flags);
 		parse_args(&flags, &arg);
+	//  make sure you reset the flags struct on each reiteration of the ft
 	}
 	va_end(arg);
-	return (0);
+	return (flags.written_chars);
 }

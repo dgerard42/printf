@@ -22,19 +22,36 @@ t_specifier		spec_functs[6]
 void			print_char(t_flags *flags, char c)
 {
  	if (flags->flag & 0b1)
-		ft_putchar(c);
+		ft_putchar_mem(c);
 	while (flags->width-- > 1)
-		ft_putchar(' ');
+		ft_putchar_mem(' ');
 	if (!(flags->flag & 0b1))
-		ft_putchar(c);
+		ft_putchar_mem(c);
+}
+
+void			print_digit(t_flags *flags, int i)
+{
+	int pres_offset;
+
+	pres_offset = 0;
+	if (flags->flag & 0b10)
+		ft_putchar_mem((i >= 0) ? '+' : '-');
+	if (flags->flag & 0b100 && i >= 0 && flags->width > 0)
+		ft_putchar_mem(' ');
+	if (flags->flag & 0b1 || flags->presicion <= ft_numlen(i))
+		ft_putnbr_mem(i);
+	while (flags->width-- > 1)
+		(flags->flag & 0b10000 ? ft_putchar_mem('0') : ft_putchar_mem(' ');
+	while (flags->presicion - ft_numlen(i) - pres_offset > 0)
+	{
+		ft_putchar_mem('0');
+		pres_offset++;
+	}
+	if (!(flags->flag & 0b1) || flags->presicion > ft_numlen(i))
+		ft_putnbr_mem(i);
 }
 
 /*
-void			print_digit(t_flags *flags, int i)
-{
-	ft_putnbr(int i);
-}
-
 void			print_string(t_flags *flags, char *s)
 {
 	ft_putstr(char *s);

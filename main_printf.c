@@ -27,7 +27,7 @@ int			main(void)
 	//INT TESTS
 	printf("%d\n", 42);
 	printf("%d\n", -42);
-	printf("%+d\n", 42);
+	printf("%+d\n", 0);
 	printf("%+d\n", -42);
 	printf("% d\n", 42);
 	printf("% d\n", -42);
@@ -35,7 +35,6 @@ int			main(void)
 	printf("%8d\n", 42);
 	printf("%-d\n", 42);
 	printf("%08d\n", 42);
-	printf("%.1d\n", 42000);
 	printf("%.0d\n", 42000);
 	printf("%.d\n", 42000);
 	printf("%.2d\n", 42000);

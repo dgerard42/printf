@@ -19,6 +19,7 @@ SRCS = 	ft_printf.c\
 		libft/ft_atoi.c\
 		libft/ft_isdigit.c\
 		libft/ft_putchar.c\
+		libft/ft_putnbr.c\
 		libft/ft_putstr.c\
 
 OFILES = $(SRCS:.c=.o)
