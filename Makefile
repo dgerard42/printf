@@ -17,27 +17,37 @@ CFLAGS = -Wall -Werror -Wextra
 SRCS = 	ft_printf.c\
 		parse_args.c\
 		outputs.c\
-		libft/ft_atoi.c\
+
+LIBFT = libft/ft_atoi.c\
 		libft/ft_isdigit.c\
-		libft/ft_putchar.c\
-		libft/ft_putnbr.c\
-		libft/ft_putstr.c\
 		libft/ft_numlen.c\
 
-OFILES = $(SRCS:.c=.o)
+LIBFTDIR = libft
 
-all: $(NAME)
+ODIR = ofiles
 
-$(NAME): $(OFILES)
-	@ar rc $(NAME) $(OFILES)
-	@echo "\033[32m[libftprintf created ( ͡° ͜ʖ ͡°)]\033[0m"
+OFILES = $(addprefix $(ODIR)/,$(SRCS:.c=.o))
 
-%.o: %.c
+LIBFTO = $(LIBFT:.c=.o)
+
+$(ODIR)/%.o: %.c
 	@gcc $(CFLAGS) -c $^ -o $@
 	@/bin/echo -n "❂❂❂"
 
+all: $(NAME)
+
+$(NAME): $(OFILES) $(LIBFTO)
+	@ar rc $(NAME) $(OFILES) $(LIBFTO)
+	@echo "\033[32m[libftprintf created ( ͡° ͜ʖ ͡°)]\033[0m"
+
+$(OFILES): | $(ODIR)
+
+$(ODIR):
+	mkdir $(ODIR)
+
 clean:
-	@rm -f $(OFILES)
+	@rm -f $(LIBFTO)
+	@rm -rf $(ODIR)
 	@echo "\033[31m[.o files deleted (╯°□°）╯︵ ┻━┻ ]\033[0m"
 
 fclean: clean

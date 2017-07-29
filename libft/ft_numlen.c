@@ -1,25 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr.c                                        :+:      :+:    :+:   */
+/*   ft_numlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dgerard <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/01/16 12:36:59 by dgerard           #+#    #+#             */
-/*   Updated: 2017/03/15 13:25:00 by dgerard          ###   ########.fr       */
+/*   Created: 2017/07/28 16:36:37 by dgerard           #+#    #+#             */
+/*   Updated: 2017/07/28 16:36:56 by dgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putstr(const char *str)
+int						ft_numlen(int value, int base)
 {
-	int	i;
+	int len;
 
-	i = 0;
-	while (str[i] != '\0')
+	len = (value == 0) ? 1 : 0;
+	if (value < 0)
 	{
-		ft_putchar(str[i]);
-		i++;
+		len = (base == 10) ? 2 : 1;
+		value = value / base;
+		value = -value;
 	}
+	while (value > 0)
+	{
+		value = value / base;
+		len++;
+	}
+	return (len);
 }
