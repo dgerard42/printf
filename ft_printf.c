@@ -46,35 +46,44 @@ const char 			*check_flags(const char *format, t_flags *flags)
 	return (format);
 }
 
-//try doubling up functions for width and presicion
 const char 			*check_width_presicion(const char *format, t_flags *flags)
 {
 	flags->width = -1;
 	flags->presicion = -1;
 	if (ft_isdigit((int)*format))
 		flags->width = ft_atoi(format);
-	if (flags->width != -1)
+	while (flags->width != -1 && ft_isdigit((int)*format))
 		format++;
 	if (*format == '.')
 		format++;
 	if (ft_isdigit((int)*format))
 		flags->presicion = ft_atoi(format);
-	if (flags->presicion != -1)
+	while (flags->presicion != -1 && ft_isdigit((int)*format))
 		format++;
 	return (format);
 }
 
-/*
 const char 			*check_length(const char *format, t_flags *flags)
 {
-	if (*format == 'h' && *format + 1 == 'h')
-	if (*format == 'h' && *format + 1 != 'h')
-	if (*format == 'l' && *format + 1 == 'l')
-	if (*format == 'l' && *format + 1 != 'l')
-	if (*format == 'j')
-	if (*format == 'z')
+	flags->length = 0;
+	while (*format == 'h' || *format == 'l' || *format == 'j' || *format == 'z')
+	{
+		if (*format == 'h' && *format + 1 == 'h')
+			flags->length = 1;
+		if (*format == 'h' && *format + 1 != 'h')
+			flags->length = 2;
+		if (*format == 'l' && *format + 1 == 'l')
+			flags->length = 3;
+		if (*format == 'l' && *format + 1 != 'l')
+			flags->length = 4;
+		if (*format == 'j')
+			flags->length = 5;
+		if (*format == 'z')
+			flags->length = 6;
+		format++;
+	}
+	return (format);
 }
-*/
 
 const char 			*check_specifier(const char *format, t_flags *flags)
 {
@@ -93,8 +102,8 @@ const char 			*check_specifier(const char *format, t_flags *flags)
 		flags->specifier = 6;
 	else if (*format == 'p')
 		flags->specifier = 7;
-	if (flags->specifier != 0)
-		format++;
+	//you probably dont need this if there is always a specifier, always one
+	format++;
 	return (format);
 }
 
@@ -109,7 +118,7 @@ const char 			*print_format_string(const char *format, t_flags *flags)
 	}
 	if (*format)
 		format++;
-	return(format);
+	return (format);
 }
 
 int					ft_printf(const char *format, ...)

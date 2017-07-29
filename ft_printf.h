@@ -22,7 +22,7 @@ typedef	struct		s_flags
 	unsigned char	flag;
 	int				width;
 	int			 	presicion;
-	unsigned char	length;
+	int				length;
 	int				specifier;
 	int				written_chars;
 }					t_flags;
@@ -35,3 +35,9 @@ void			ft_putchar_mem(t_flags *flags, char c);
 void			ft_putnbr_mem(t_flags *flags, int nbr);
 
 #endif
+
+//0b000001 = '-'
+//0b000010 = '+'
+//0b000100 = ' '
+//0b001000 = '#'
+//0b010000 = '0'

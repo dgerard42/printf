@@ -34,6 +34,10 @@ $(ODIR)/%.o: %.c
 	@gcc $(CFLAGS) -c $^ -o $@
 	@/bin/echo -n "❂❂❂"
 
+%.o: %.c
+	@gcc $(CFLAGS) -c $^ -o $@
+	@/bin/echo -n "❂❂❂"
+
 all: $(NAME)
 
 $(NAME): $(OFILES) $(LIBFTO)
@@ -43,7 +47,7 @@ $(NAME): $(OFILES) $(LIBFTO)
 $(OFILES): | $(ODIR)
 
 $(ODIR):
-	mkdir $(ODIR)
+	@mkdir $(ODIR)
 
 clean:
 	@rm -f $(LIBFTO)

@@ -34,13 +34,11 @@ void			print_digit(t_flags *flags, int i)
 	int pres_offset;
 
 	pres_offset = 0;
-//	printf("flag%d, width%d, presicion%d, length%d, specifier%d, written_chars%d\n",
-//		flags->flag, flags->width, flags->presicion, flags->length, flags->specifier, flags->written_chars);
 	if (flags->flag & 0b10 && i >= 0)
 		ft_putchar_mem(flags, '+');
-	if (flags->flag & 0b100 && i >= 0 && flags->width > 0)
+	if (flags->flag & 0b100 && i >= 0)
 		ft_putchar_mem(flags, ' ');
-	if (flags->flag & 0b1 || flags->presicion <= ft_numlen(i, 10))
+	if (flags->flag & 0b1)// || flags->presicion <= ft_numlen(i, 10))
 		ft_putnbr_mem(flags, i);
 	while (flags->width-- > 1)
 		(flags->flag & 0b10000 ? ft_putchar_mem(flags, '0') : ft_putchar_mem(flags, ' '));
@@ -49,7 +47,8 @@ void			print_digit(t_flags *flags, int i)
 		ft_putchar_mem(flags, '0');
 		pres_offset++;
 	}
-	if (!(flags->flag & 0b1) && flags->presicion > ft_numlen(i, 10))
+//	printf("presicion%d, numlen%d\n", flags->presicion, ft_numlen(i, 10));
+	if (!(flags->flag & 0b1) || flags->presicion > ft_numlen(i, 10))
 		ft_putnbr_mem(flags, i);
 }
 
@@ -86,6 +85,8 @@ void			parse_args(t_flags *flags, va_list *arg)
 	int	i;
 
 	i = 0;
+//	printf("flag%d, width%d, presicion%d, length%d, specifier%d, written_chars%d\n",
+//		flags->flag, flags->width, flags->presicion, flags->length, flags->specifier, flags->written_chars);
 	if(flags->specifier == 1)
 	{
 		i = va_arg(*(arg), int);
