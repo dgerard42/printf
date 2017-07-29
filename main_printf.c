@@ -39,6 +39,21 @@ int			main(void)
 	printf("%.d\n", 42000);
 	printf("%.2d\n", 42000);
 	printf("%.10d\n", 42000);
+
+	ft_printf("%d\n", 42);
+	ft_printf("%d\n", -42);
+	ft_printf("%+d\n", 0);
+	ft_printf("%+d\n", -42);
+	ft_printf("% d\n", 42);
+	ft_printf("% d\n", -42);
+	ft_printf("%-8d\n", 42);
+	ft_printf("%8d\n", 42);
+	ft_printf("%-d\n", 42);
+	ft_printf("%08d\n", 42);
+	ft_printf("%.0d\n", 42000);
+	ft_printf("%.d\n", 42000);
+	ft_printf("%.2d\n", 42000);
+	ft_printf("%.10d\n", 42000);
 	//INTEGRATED STRING TESTS
 	//STRING TESTS
 	//HEX TESTS

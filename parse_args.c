@@ -22,11 +22,11 @@ t_specifier		spec_functs[6]
 void			print_char(t_flags *flags, char c)
 {
  	if (flags->flag & 0b1)
-		ft_putchar_mem(c);
+		ft_putchar_mem(flags, c);
 	while (flags->width-- > 1)
-		ft_putchar_mem(' ');
+		ft_putchar_mem(flags, ' ');
 	if (!(flags->flag & 0b1))
-		ft_putchar_mem(c);
+		ft_putchar_mem(flags, c);
 }
 
 void			print_digit(t_flags *flags, int i)
@@ -34,21 +34,23 @@ void			print_digit(t_flags *flags, int i)
 	int pres_offset;
 
 	pres_offset = 0;
-	if (flags->flag & 0b10)
-		ft_putchar_mem((i >= 0) ? '+' : '-');
+//	printf("flag%d, width%d, presicion%d, length%d, specifier%d, written_chars%d\n",
+//		flags->flag, flags->width, flags->presicion, flags->length, flags->specifier, flags->written_chars);
+	if (flags->flag & 0b10 && i >= 0)
+		ft_putchar_mem(flags, '+');
 	if (flags->flag & 0b100 && i >= 0 && flags->width > 0)
-		ft_putchar_mem(' ');
-	if (flags->flag & 0b1 || flags->presicion <= ft_numlen(i))
-		ft_putnbr_mem(i);
+		ft_putchar_mem(flags, ' ');
+	if (flags->flag & 0b1 || flags->presicion <= ft_numlen(i, 10))
+		ft_putnbr_mem(flags, i);
 	while (flags->width-- > 1)
-		(flags->flag & 0b10000 ? ft_putchar_mem('0') : ft_putchar_mem(' ');
-	while (flags->presicion - ft_numlen(i) - pres_offset > 0)
+		(flags->flag & 0b10000 ? ft_putchar_mem(flags, '0') : ft_putchar_mem(flags, ' '));
+	while (flags->presicion - ft_numlen(i, 10) - pres_offset > 0)
 	{
-		ft_putchar_mem('0');
+		ft_putchar_mem(flags, '0');
 		pres_offset++;
 	}
-	if (!(flags->flag & 0b1) || flags->presicion > ft_numlen(i))
-		ft_putnbr_mem(i);
+	if (!(flags->flag & 0b1) && flags->presicion > ft_numlen(i, 10))
+		ft_putnbr_mem(flags, i);
 }
 
 /*
@@ -88,5 +90,10 @@ void			parse_args(t_flags *flags, va_list *arg)
 	{
 		i = va_arg(*(arg), int);
 		print_char(flags, i);
+	}
+	if(flags->specifier == 2)
+	{
+		i = va_arg(*(arg), int);
+		print_digit(flags, i);
 	}
 }

@@ -16,11 +16,13 @@ CFLAGS = -Wall -Werror -Wextra
 
 SRCS = 	ft_printf.c\
 		parse_args.c\
+		outputs.c\
 		libft/ft_atoi.c\
 		libft/ft_isdigit.c\
 		libft/ft_putchar.c\
 		libft/ft_putnbr.c\
 		libft/ft_putstr.c\
+		libft/ft_numlen.c\
 
 OFILES = $(SRCS:.c=.o)
 

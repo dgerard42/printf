@@ -98,13 +98,13 @@ const char 			*check_specifier(const char *format, t_flags *flags)
 	return (format);
 }
 
-const char 			*print_format_string(const char *format)
+const char 			*print_format_string(const char *format, t_flags *flags)
 {
 	while (*format != '%' && *format)
-		ft_putchar_mem(*format++);
+		ft_putchar_mem(flags, *format++);
 	if (*format == '%' && *format + 1 == '%')
 	{
-		ft_putchar_mem('%');
+		ft_putchar_mem(flags, '%');
 		format++;
 	}
 	if (*format)
@@ -122,7 +122,7 @@ int					ft_printf(const char *format, ...)
 // make sure the format string is null terminated
 	while (*format)
 	{
-		format = print_format_string(format);
+		format = print_format_string(format, &flags);
 		format = check_flags(format, &flags);
 		format = check_width_presicion(format, &flags);
 	//	format = check_length(format, &flags);

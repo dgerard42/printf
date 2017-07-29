@@ -15,6 +15,7 @@
 
 # include "libft/libft.h"
 # include <stdarg.h>
+# include <stdio.h> //REMOVE THIS EVENTUALLY!!!!!!!!
 
 typedef	struct		s_flags
 {
@@ -31,5 +32,6 @@ typedef	struct		s_flags
 int				ft_printf(const char *format, ...);
 void			parse_args(t_flags *flags, va_list *arg);
 void			ft_putchar_mem(t_flags *flags, char c);
+void			ft_putnbr_mem(t_flags *flags, int nbr);
 
 #endif
