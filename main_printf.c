@@ -15,23 +15,25 @@
 
 int			main(void)
 {
-//	int my_ret = 0;
-//	int	real_ret = 0;
-//printf("real_ret%d, my_ret%d\n", real_ret, my_ret);
+	// int my_ret = 0;
+	// int real_ret = 0;
+	// printf("real_ret%d, my_ret%d\n", real_ret, my_ret);
 	//CHAR TESTS ----------------------------
-//	printf("%c\n", '*');
-//	printf("%-42c\n", '*');
-//	printf("%2c\n", '*');
-//	printf("%-c\n", '*');
-
-//	ft_printf("%c\n", '*');
-//	ft_printf("%-42c\n", '*');
-//	ft_printf("%2c\n", '*');
-//	ft_printf("%-c\n", '*');
+	// printf("1.r.%c\n", '*');
+	// printf("2.r.%%%c\n", '*');
+	// printf("3.r.%-8c\n", '*');
+	// printf("4.r.%2c\n", '*');
+	// printf("5.r.%-c\n", '*');
+	//
+	// ft_printf("1.m.%c\n", '*');
+	// ft_printf("2.m.%%%c\n", '*');
+	// ft_printf("3.m.%-8c\n", '*');
+	// ft_printf("4.m.%2c\n", '*');
+	// ft_printf("5.m.%-c\n", '*');
 	//INT TESTS -----------------------------
-	// printf("1.r.%d\n", 42);
-	// printf("2.r.%d\n", -42);
-	// printf("3.r.%+d\n", 0);
+	printf("1.r.%d\n", 2147483648);
+	printf("2.r.%d\n", -2147483648);
+	printf("3.r.%+d\n", 0);
 	// printf("4.r.%+d\n", -42);
 	// printf("5.r.% d\n", 42);
 	// printf("6.r.% d\n", -42);
@@ -44,9 +46,9 @@ int			main(void)
 	// printf("D.r.%.2d\n", 42000);
 	// printf("E.r.%.10d\n", 42000);
 
-	// ft_printf("1.m.%d\n", 42);
-	// ft_printf("2.m.%d\n", -42);
-	// ft_printf("3.m.%+d\n", 0);
+	ft_printf("1.m.%d\n", 2147483648);
+	ft_printf("2.m.%d\n", -2147483648);
+	ft_printf("3.m.%+d\n", 0);
 	// ft_printf("4.m.%+d\n", -42);
 	// ft_printf("5.m.% d\n", 42);
 	// ft_printf("6.m.% d\n", -42);
@@ -59,47 +61,59 @@ int			main(void)
 	// ft_printf("D.m.%.2d\n", 42000);
 	// ft_printf("E.m.%.10d\n", 42000);
 	//INT LENGTH TESTS ----------------------
-	char a = '*';
-	short b = 42;
-	long c = 42.000;
-	long long d = 42.000000;
-	size_t e = 42;
-	intmax_t f = 42;
-
-	printf("%hhd\n", a);
-	printf("%hd\n", b);
-	printf("%ld\n", c);
-	printf("%lld\n", d);
-	printf("%jd\n", e);
-	printf("%zd\n", f);
-	printf("%hld\n", c);
-
-	// ft_printf("%hhd\n", a);
-	// ft_printf("%hd\n", b);
-	// ft_printf("%ld\n", c);
-	// ft_printf("%lld\n", d);
-	// ft_printf("%jd\n", e);
-	// ft_printf("%zd\n", f);
-	// ft_printf("%hld\n", c);
-	//INTEGRATED STRING TESTS
-	//STRING TESTS
+	// 	char a = '*';
+	// 	short b = 42;
+	// 	long c = 42.000;
+	// 	long long d = 42.000000;
+	// 	size_t e = 42;
+	// 	intmax_t f = 42;
+	//
+	// 	printf("1.r.%hhd\n", a);
+	// 	printf("2.r.%hd\n", b);
+	// 	printf("3.r.%ld\n", c);
+	// 	printf("4.r.%lld\n", d);
+	// 	printf("5.r.%jd\n", e);
+	// 	printf("6.r.%zd\n", f);
+	// 	printf("%hld\n", c);
+	//
+	// 	ft_printf("1.m.%hhd\n", a);
+	// 	ft_printf("2.m.%hd\n", b);
+	// 	ft_printf("3.m.%ld\n", c);
+	// 	ft_printf("4.m.%lld\n", d);
+	// 	ft_printf("5.m.%jd\n", e);
+	// 	ft_printf("6.m.%zd\n", f);
+	//	ft_printf("%hld\n", c);
+	//STRING TESTS -------------------------
+	// char *string = "hella";
+	//
+	// printf("r.1.%s\n", string);
+	// printf("r.2.%s\n", "fug");
+	// printf("r.3.%-2s\n", string);
+	// printf("r.4.%-2s\n", "fug");
+	// printf("r.5.%.2s\n", string);
+	// printf("r.6.%.2s\n", "fug");
+	// printf("r.7.%8s\n", string);
+	// printf("r.8.%8s\n", "fug");
+	// printf("r.9.%-10s\n", string);
+	// printf("r.A.%-10s\n", "fug");
+	// printf("%ls\n", string);
+	// printf("%ls\n", "fug");
+	//
+	// ft_printf("m.1.%s\n", string);
+	// ft_printf("m.2.%s\n", "fug");
+	// ft_printf("m.3.%-4s\n", string);
+	// ft_printf("m.4.%-4s\n", "fug");
+	// ft_printf("m.5.%.2s\n", string);
+	// ft_printf("m.6.%.2s\n", "fug");
+	// ft_printf("m.7.%8s\n", string);
+	// ft_printf("m.8.%8s\n", "fug");
+	// ft_printf("m.9.%-10s\n", string);
+	// ft_printf("m.A.%-10s\n", "fug");
+	// ft_printf("%ls\n", string);
+	// ft_printf("%ls\n", "fug");
+	//INTEGRATED STRING TESTS ------------------
 	//HEX TESTS
 	//POINTER TESTS
 	//UNSIGNED INT TESTS
 	//OCTALS TESTS
 }
-
-/*
-int				main(void)
-{
-	//INITIAL TESTS
-//	printf("%%\n");
-//	ft_printf("%%\n");
-//	printf("whats up bitches\n");
-//	ft_printf("whats up bitches\n");
-//	printf("%s\n\t%s", "yo", "42");
-//	ft_printf("%s\n\t", "yo");
-//	printf("shit here%dAND here!!\n", 42);
-//	ft_printf("shit here%dAND here!!\n", 42);
-}
-*/

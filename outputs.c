@@ -18,25 +18,47 @@ void			ft_putchar_mem(t_flags *flags, char c)
 	flags->written_chars++;
 }
 
-void				ft_putnbr_mem(t_flags *flags, int nbr)
+char					base_assign(int num)
 {
+	int		i;
+	char	*alnums;
+
+	i = 0;
+	alnums = "0123456789ABCDEF";
+	while (num-- > 0)
+		i++;
+	return (alnums[i]);
+}
+
+//add base option and make like itoa
+void				ft_putnbr_mem(t_flags *flags, int nbr, int base)
+{
+	bool	max;
+	char	last;
+
+	max = false;
 	if (nbr == -2147483648)
 	{
-		ft_putnbr_mem(flags, nbr / 10);
-		ft_putchar_mem(flags, '8');
+		max = true;
+		nbr += base;
+		last = base_assign(abs(nbr % base));
+		nbr -= base;
+		ft_putnbr_mem(flags, nbr / base, base);
 	}
 	else if (nbr < 0)
 	{
 		ft_putchar_mem(flags, '-');
 		nbr = -nbr;
-		if (nbr / 10 != 0)
-			ft_putnbr_mem(flags, nbr / 10);
-		ft_putchar_mem(flags, (nbr % 10) + '0');
+		if (nbr / base != 0)
+			ft_putnbr_mem(flags, nbr / base, base);
+		ft_putchar_mem(flags, base_assign(nbr % base));
 	}
 	else
 	{
-		if (nbr > 9)
-			ft_putnbr_mem(flags, nbr / 10);
-		ft_putchar_mem(flags, (nbr % 10) + '0');
+		if (nbr > (base - 1))
+			ft_putnbr_mem(flags, nbr / base, base);
+		ft_putchar_mem(flags, base_assign(nbr % base));
 	}
+	if (max == true)
+		ft_putchar_mem(flags, last);
 }

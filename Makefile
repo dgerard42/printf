@@ -21,6 +21,7 @@ SRCS = 	ft_printf.c\
 LIBFT = libft/ft_atoi.c\
 		libft/ft_isdigit.c\
 		libft/ft_numlen.c\
+		libft/ft_strlen.c\
 
 LIBFTDIR = libft
 

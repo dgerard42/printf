@@ -12,7 +12,6 @@
 
 #include "ft_printf.h"
 
-
 int				check_dubs(const char *format, char c)
 {
 	while (*format == '-' || *format == '+' || *format == ' ' ||
@@ -68,19 +67,22 @@ const char 			*check_length(const char *format, t_flags *flags)
 	flags->length = 0;
 	while (*format == 'h' || *format == 'l' || *format == 'j' || *format == 'z')
 	{
-		if (*format == 'h' && *format + 1 == 'h')
+		if (*format == 'h' && *(format + 1) == 'h')
 			flags->length = 1;
-		if (*format == 'h' && *format + 1 != 'h')
+		if (*format == 'h' && *(format + 1) != 'h')
 			flags->length = 2;
-		if (*format == 'l' && *format + 1 == 'l')
+		if (*format == 'l' && *(format + 1) == 'l')
 			flags->length = 3;
-		if (*format == 'l' && *format + 1 != 'l')
+		if (*format == 'l' && *(format + 1) != 'l')
 			flags->length = 4;
 		if (*format == 'j')
 			flags->length = 5;
 		if (*format == 'z')
 			flags->length = 6;
-		format++;
+		if (flags->length == 1 || flags->length == 3)
+			format++;
+		if(flags->length != 0)
+			format++;
 	}
 	return (format);
 }
@@ -102,8 +104,6 @@ const char 			*check_specifier(const char *format, t_flags *flags)
 		flags->specifier = 6;
 	else if (*format == 'p')
 		flags->specifier = 7;
-	//you probably dont need this if there is always a specifier, always one
-	format++;
 	return (format);
 }
 
@@ -111,12 +111,12 @@ const char 			*print_format_string(const char *format, t_flags *flags)
 {
 	while (*format != '%' && *format)
 		ft_putchar_mem(flags, *format++);
-	if (*format == '%' && *format + 1 == '%')
+	if (*format && *format == '%' && *(format + 1) == '%')
 	{
-		ft_putchar_mem(flags, '%');
+		ft_putchar_mem(flags, *format++);
 		format++;
 	}
-	if (*format)
+	if (*format && *format == '%')
 		format++;
 	return (format);
 }
@@ -134,10 +134,13 @@ int					ft_printf(const char *format, ...)
 		format = print_format_string(format, &flags);
 		format = check_flags(format, &flags);
 		format = check_width_presicion(format, &flags);
-	//	format = check_length(format, &flags);
+		format = check_length(format, &flags);
 		format = check_specifier(format, &flags);
-		parse_args(&flags, &arg);
-	//  make sure you reset the flags struct on each reiteration of the ft
+		if (flags.specifier != 0)
+			parse_args(&flags, &arg);
+		if (*format)
+			format++;
+	//  make sure you reset the flags struct on each new parameter
 	}
 	va_end(arg);
 	return (flags.written_chars);
