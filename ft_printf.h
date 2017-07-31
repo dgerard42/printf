@@ -18,6 +18,13 @@
 # include <stdbool.h>
 # include <stdio.h> //REMOVE THIS EVENTUALLY!!!!!!!!
 
+//delete these if you decide not to use them in the code itself
+# define MINUS				0b1
+# define PLUS				0b10
+# define SPACE				0b100
+# define HASHTAG			0b1000
+# define ZERO				0b10000
+
 typedef	struct		s_flags
 {
 	unsigned char	flag;
@@ -25,6 +32,7 @@ typedef	struct		s_flags
 	int			 	presicion;
 	int				length;
 	int				specifier;
+	bool			caps;
 	int				written_chars;
 }					t_flags;
 
@@ -36,9 +44,3 @@ void			ft_putchar_mem(t_flags *flags, char c);
 void			ft_putnbr_mem(t_flags *flags, int nbr, int base);
 
 #endif
-
-//0b000001 = '-'
-//0b000010 = '+'
-//0b000100 = ' '
-//0b001000 = '#'
-//0b010000 = '0'

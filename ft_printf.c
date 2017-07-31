@@ -47,11 +47,11 @@ const char 			*check_flags(const char *format, t_flags *flags)
 
 const char 			*check_width_presicion(const char *format, t_flags *flags)
 {
-	flags->width = -1;
+	flags->width = 0;
 	flags->presicion = -1;
 	if (ft_isdigit((int)*format))
 		flags->width = ft_atoi(format);
-	while (flags->width != -1 && ft_isdigit((int)*format))
+	while (flags->width != 0 && ft_isdigit((int)*format))
 		format++;
 	if (*format == '.')
 		format++;
@@ -104,6 +104,7 @@ const char 			*check_specifier(const char *format, t_flags *flags)
 		flags->specifier = 6;
 	else if (*format == 'p')
 		flags->specifier = 7;
+	flags->caps = (*format >= 'A' && *format <= 'Z') ? true : false;
 	return (format);
 }
 
@@ -129,6 +130,7 @@ int					ft_printf(const char *format, ...)
 
 	flags.written_chars = 0;
 // make sure the format string is null terminated
+//to make this code faster, figure out how to skip these functions if you don't need them
 	while (*format)
 	{
 		format = print_format_string(format, &flags);
