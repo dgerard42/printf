@@ -32,24 +32,22 @@ void			print_char(t_flags *flags, va_list *arg)
 		ft_putchar_mem(flags, c);
 }
 
-void			print_prefix(t_flags *flags)
-{
-	if (flags->flag & 0b1000)
-	{
-		if (flags->specifier == 3 || flags->specifier == 6)
-			ft_putchar_mem(flags, '0');
-		if (flags->specifier == 6)
-			(flags->caps == true) ? ft_putchar_mem(flags, 'X') : ft_putchar_mem(flags, 'x');
-	}
-}
 //to speed things up, stop putting function calls in conditional statements
-void			print_digit(t_flags *flags, va_list *arg, int base)
+void			print_signed(t_flags *flags, va_list *arg, int base)
 {
-	int	i;
-	int	padding;
+	int					padding;
 
-	i = va_arg(*(arg), int);
-	padding = (flags->width == 0) ? flags->presicion - ft_numlen(i, base) : flags->width - ft_numlen(i, base);
+	if (base == 10)
+	{
+		long long i;
+		i = va_arg(*(arg), long long);
+		padding = (flags->width == 0) ? flags->presicion - ft_numlen(i, base) : flags->width - ft_numlen(i, base);
+	}
+	else
+	{
+		unsigned long long i;
+		i = va_arg(*(arg), long long);
+	}
 	if (flags->flag & 0b10 && i >= 0)
 		ft_putchar_mem(flags, '+');
 	if (i < 0)
@@ -57,17 +55,11 @@ void			print_digit(t_flags *flags, va_list *arg, int base)
 	if (!(flags->flag & 0b10) && flags->flag & 0b100 && i >= 0)
 		ft_putchar_mem(flags, ' ');
 	if (flags->flag & 0b1)
-	{
-		print_prefix(flags);
-		ft_putnbr_mem(flags, i, base);
-	}
+		(base == 10) ? ft_putnbr_mem(flags, i) : ft_putunbr_mem(flags, i);
 	while (padding-- > 0)
 		(flags->flag & 0b10000 || flags->presicion > 0) ? ft_putchar_mem(flags, '0') : ft_putchar_mem(flags, ' ');
 	if (!(flags->flag & 0b1) || flags->presicion > ft_numlen(i, base))
-	{
-		print_prefix(flags);
-		ft_putnbr_mem(flags, i, base);
-	}
+		(base == 10) ? ft_putnbr_mem(flags, i) : ft_putunbr_mem(flags, i);
 }
 
 void			print_string(t_flags *flags, va_list *arg)

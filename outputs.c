@@ -18,46 +18,47 @@ void			ft_putchar_mem(t_flags *flags, char c)
 	flags->written_chars++;
 }
 
-char					base_assign(int num, bool caps)
+void			print_prefix(t_flags *flags)
 {
-	int		i;
-	char	*alnums_caps;
-	char	*alnums_lower;
-
-	i = 0;
-	alnums_lower = "0123456789abcdef";
-	alnums_caps = "0123456789ABCDEF";
-	while (num-- > 0)
-		i++;
-	return ((caps == true) ? alnums_caps[i] : alnums_lower[i]);
+	if (flags->flag & 0b1000)
+	{
+		if (flags->specifier == 3 || flags->specifier == 6)
+			ft_putchar_mem(flags, '0');
+		if (flags->specifier == 6)
+			(flags->caps == true) ? ft_putchar_mem(flags, 'X') : ft_putchar_mem(flags, 'x');
+	}
 }
 
-void				ft_putnbr_mem(t_flags *flags, int nbr, int base)
+void				ft_putnbr_mem(t_flags *flags, intmax_t nbr)
 {
-	bool	max;
-	char	last;
+	int		isneg;
 
-	max = (nbr == -2147483648) ? true : false;
-	if (nbr == -2147483648)
+	isneg = (nbr < 0) ? -1 : 1;
+	if (nbr == 0)
+		ft_putchar_mem(flags, '0');
+	while (nbr != 0)
 	{
-		nbr += base;
-		last = base_assign(abs(nbr % base), flags->caps);
-		nbr -= base;
-		ft_putnbr_mem(flags, nbr / base, base);
+		ft_putchar_mem(flags, ((value % 10) + '0') * isneg);
+		nbr = nbr / 10;
 	}
-	else if (nbr < 0)
+}
+
+void				ft_putunbr_mem(t_flags *flags, uintmax_t nbr, int base)
+{
+	int		isneg;
+	int		alpha;
+
+	isneg = (nbr < 0) ? -1 : 1;
+	print_prefix(flags);
+	alpha = (flags->caps == true) ? 'A' : 'a';
+	if (nbr == 0)
+		ft_putchar_mem(flags, '0');
+	while (nbr != 0)
 	{
-		nbr = -nbr;
-		if (nbr / base != 0)
-			ft_putnbr_mem(flags, nbr / base, base);
-		ft_putchar_mem(flags, base_assign(nbr % base, flags->caps));
+		if (value % base > 9)
+			ft_putchar_mem(flags, ((value % base) + alpha) * isneg);
+		else
+			ft_putchar_mem(flag, ((vale % base) + '0') * isneg);
+		nbr = nbr / base;
 	}
-	else
-	{
-		if (nbr > (base - 1))
-			ft_putnbr_mem(flags, nbr / base, base);
-		ft_putchar_mem(flags, base_assign(nbr % base, flags->caps));
-	}
-	if (max == true)
-		ft_putchar_mem(flags, last);
 }

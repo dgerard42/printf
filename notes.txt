@@ -12,3 +12,8 @@
 
 TO-DOS
 ~make your own abs value function
+
+~write an iterative putnbr
+~overcome the minmax problem with a sign multiplier
+~adjust it to putll
+~then make sure that it works with smaller data type maxes
