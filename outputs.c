@@ -47,7 +47,6 @@ void				ft_putnbr_mem(t_flags *flags, int nbr, int base)
 	}
 	else if (nbr < 0)
 	{
-		ft_putchar_mem(flags, '-');
 		nbr = -nbr;
 		if (nbr / base != 0)
 			ft_putnbr_mem(flags, nbr / base, base);

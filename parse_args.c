@@ -52,6 +52,8 @@ void			print_digit(t_flags *flags, va_list *arg, int base)
 	padding = (flags->width == 0) ? flags->presicion - ft_numlen(i, base) : flags->width - ft_numlen(i, base);
 	if (flags->flag & 0b10 && i >= 0)
 		ft_putchar_mem(flags, '+');
+	if (i < 0)
+		ft_putchar_mem(flags, '-');
 	if (!(flags->flag & 0b10) && flags->flag & 0b100 && i >= 0)
 		ft_putchar_mem(flags, ' ');
 	if (flags->flag & 0b1)

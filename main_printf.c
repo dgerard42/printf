@@ -34,7 +34,7 @@ int			main(void)
 	// printf("1.r.%d\n", 2147483648);
 	// printf("2.r.%d\n", -2147483648);
 	// printf("3.r.%+  d\n", 42);
-	// printf("4.r.%  +d\n", 42);
+	printf("4.r.%0+5d\n", 42);
 	// printf("5.r.% d\n", 42);
 	// printf("6.r.% d\n", -42);
 	// printf("7.r.%-8d\n", 42);
@@ -50,7 +50,7 @@ int			main(void)
 	// ft_printf("1.m.%d\n", 2147483648);
 	// ft_printf("2.m.%d\n", -2147483648);
 	// ft_printf("3.m.%+  d\n", 42);
-	// ft_printf("4.m.%  +d\n", 42);
+	ft_printf("4.m.%0+5d\n", 42);
 	// ft_printf("5.m.% d\n", 42);
 	// ft_printf("6.m.% d\n", -42);
 	// ft_printf("7.m.%-8d\n", 42);
