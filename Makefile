@@ -20,8 +20,10 @@ SRCS = 	ft_printf.c\
 
 LIBFT = libft/ft_atoi.c\
 		libft/ft_isdigit.c\
-		libft/ft_numlen.c\
 		libft/ft_strlen.c\
+		libft/ft_power.c\
+		libft/ft_numlen_ll.c\
+		libft/ft_numlen_ull.c\
 
 LIBFTDIR = libft
 
@@ -33,11 +35,11 @@ LIBFTO = $(LIBFT:.c=.o)
 
 $(ODIR)/%.o: %.c
 	@gcc $(CFLAGS) -c $^ -o $@
-	@/bin/echo -n "❂❂❂"
+	@/bin/echo -n "❂❂❂❂"
 
 %.o: %.c
 	@gcc $(CFLAGS) -c $^ -o $@
-	@/bin/echo -n "❂❂❂"
+	@/bin/echo -n "❂❂❂❂"
 
 all: $(NAME)
 

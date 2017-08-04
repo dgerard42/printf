@@ -6,7 +6,7 @@
 /*   By: dgerard <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/09 11:45:56 by dgerard           #+#    #+#             */
-/*   Updated: 2017/07/28 17:16:22 by dgerard          ###   ########.fr       */
+/*   Updated: 2017/07/07 08:21:12 by dgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,5 +98,8 @@ int					get_next_line(const int fd, char **line);
 void				ft_bitswap(unsigned char *a, unsigned char *b, size_t size);
 char				*ft_itoa_base(int value, int base);
 float				*ft_floatarraynew(size_t x);
+int					ft_power(int nbr, int power);
+int					ft_numlen_ll(intmax_t value, int base);
+int					ft_numlen_ull(uintmax_t value, int base);
 
 #endif

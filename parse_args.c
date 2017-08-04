@@ -35,19 +35,11 @@ void			print_char(t_flags *flags, va_list *arg)
 //to speed things up, stop putting function calls in conditional statements
 void			print_signed(t_flags *flags, va_list *arg, int base)
 {
-	int					padding;
+	long long 	i;
+	int			padding;
 
-	if (base == 10)
-	{
-		long long i;
-		i = va_arg(*(arg), long long);
-		padding = (flags->width == 0) ? flags->presicion - ft_numlen(i, base) : flags->width - ft_numlen(i, base);
-	}
-	else
-	{
-		unsigned long long i;
-		i = va_arg(*(arg), long long);
-	}
+	i = va_arg(*(arg), intmax_t);
+	padding = (flags->width == 0) ? flags->presicion - ft_numlen_ll(i, base) : flags->width - ft_numlen_ll(i, base);
 	if (flags->flag & 0b10 && i >= 0)
 		ft_putchar_mem(flags, '+');
 	if (i < 0)
@@ -55,11 +47,28 @@ void			print_signed(t_flags *flags, va_list *arg, int base)
 	if (!(flags->flag & 0b10) && flags->flag & 0b100 && i >= 0)
 		ft_putchar_mem(flags, ' ');
 	if (flags->flag & 0b1)
-		(base == 10) ? ft_putnbr_mem(flags, i) : ft_putunbr_mem(flags, i);
+		ft_putnbr_mem(flags, i, base);
 	while (padding-- > 0)
 		(flags->flag & 0b10000 || flags->presicion > 0) ? ft_putchar_mem(flags, '0') : ft_putchar_mem(flags, ' ');
-	if (!(flags->flag & 0b1) || flags->presicion > ft_numlen(i, base))
-		(base == 10) ? ft_putnbr_mem(flags, i) : ft_putunbr_mem(flags, i);
+	if (!(flags->flag & 0b1) || flags->presicion > ft_numlen_ll(i, base))
+		ft_putnbr_mem(flags, i, base);
+}
+
+void			print_unsigned(t_flags *flags, va_list *arg, int base)
+{
+	long long 	i;
+	int			padding;
+
+	i = va_arg(*(arg), uintmax_t);
+	padding = (flags->width == 0) ? flags->presicion - ft_numlen_ull(i, base) : flags->width - ft_numlen_ull(i, base);
+	if (!(flags->flag & 0b10) && flags->flag & 0b100 && i >= 0)
+		ft_putchar_mem(flags, ' ');
+	if (flags->flag & 0b1)
+		ft_putunbr_mem(flags, i, base);
+	while (padding-- > 0)
+		(flags->flag & 0b10000 || flags->presicion > 0) ? ft_putchar_mem(flags, '0') : ft_putchar_mem(flags, ' ');
+	if (!(flags->flag & 0b1) || flags->presicion > ft_numlen_ull(i, base))
+		ft_putunbr_mem(flags, i, base);
 }
 
 void			print_string(t_flags *flags, va_list *arg)
@@ -102,11 +111,13 @@ void			parse_args(t_flags *flags, va_list *arg)
 	if(flags->specifier == 1)
 		print_char(flags, arg);
 	else if(flags->specifier == 2)
-		print_digit(flags, arg, 10);
+		print_signed(flags, arg, 10);
 	else if(flags->specifier == 3)
-		print_digit(flags, arg, 8);
+		print_unsigned(flags, arg, 8);
 	else if(flags->specifier == 4)
 		print_string(flags, arg);
 	else if(flags->specifier == 6)
-		print_digit(flags, arg, 16);
+		print_unsigned(flags, arg, 16);
+	else if (flags->specifier == 5)
+		print_unsigned(flags, arg, 10);
 }
