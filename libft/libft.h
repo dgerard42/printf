@@ -101,5 +101,7 @@ float				*ft_floatarraynew(size_t x);
 int					ft_power(int nbr, int power);
 int					ft_numlen_ll(intmax_t value, int base);
 int					ft_numlen_ull(uintmax_t value, int base);
+intmax_t 			ft_power_ll(intmax_t nbr, intmax_t power);
+uintmax_t 			ft_power_ull(uintmax_t nbr, uintmax_t power);
 
 #endif

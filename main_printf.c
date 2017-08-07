@@ -31,37 +31,37 @@ int			main(void)
 	// ft_printf("4.m.%2c\n", '*');
 	// ft_printf("5.m.%-c\n", '*');
 	//INT TESTS -----------------------------
-	printf("1.r.%d\n", 2147483648);
-	printf("2.r.%d\n", -2147483648);
-	printf("3.r.%+  d\n", 42);
-	printf("4.r.%0+5d\n", 42);
-	printf("5.r.% d\n", 42);
-	printf("6.r.% d\n", -42);
-	printf("7.r.%-8d\n", 42);
-	printf("8.r.%8d\n", 420);
-	printf("9.r.%-d\n", 42);
-	printf("A.r.%08d\n", 42);
-	printf("B.r.%.0d\n", 42000);
-	printf("C.r.%.d\n", 42000);
-	printf("D.r.%.2d\n", 8323);
-	printf("E.r.%.10d\n", 696969);
-	printf("F.r.%0d\n", 42);
-
-	ft_printf("1.m.%d\n", 2147483648);
-	ft_printf("2.m.%d\n", -2147483648);
-	ft_printf("3.m.%+  d\n", 42);
-	ft_printf("4.m.%0+5d\n", 42);
-	ft_printf("5.m.% d\n", 42);
-	ft_printf("6.m.% d\n", -42);
-	ft_printf("7.m.%-8d\n", 42);
-	ft_printf("8.m.%8d\n", 420);
-	ft_printf("9.m.%-d\n", 42);
-	ft_printf("A.m.%08d\n", 42);
-	ft_printf("B.m.%.0d\n", 42000);
-	ft_printf("C.m.%.d\n", 42000);
-	ft_printf("D.m.%.2d\n", 8323);
-	ft_printf("E.m.%.10d\n", 696969);
-	ft_printf("F.r.%0d\n", 42);
+	// printf("1.r.%d\n", 2147483648);
+	// printf("2.r.%d\n", -2147483648);
+	// printf("3.r.%+  d\n", 42);
+	// printf("4.r.%0+5d\n", 42);
+	// printf("5.r.% d\n", 42);
+	// printf("6.r.% d\n", -42);
+	// printf("7.r.%-8d\n", 42);
+	// printf("8.r.%8d\n", 420);
+	// printf("9.r.%-d\n", 42);
+	// printf("A.r.%08d\n", 42);
+	// printf("B.r.%.0d\n", 42000);
+	// printf("C.r.%.d\n", 42000);
+	// printf("D.r.%.2d\n", 8323);
+	// printf("E.r.%.10d\n", 696969);
+	// printf("F.r.%0d\n", 42);
+	//
+	// ft_printf("1.m.%d\n", 2147483648);
+	// ft_printf("2.m.%d\n", -2147483648);
+	// ft_printf("3.m.%+  d\n", 42);
+	// ft_printf("4.m.%0+5d\n", 42);
+	// ft_printf("5.m.% d\n", 42);
+	// ft_printf("6.m.% d\n", -42);
+	// ft_printf("7.m.%-8d\n", 42);
+	// ft_printf("8.m.%8d\n", 420);
+	// ft_printf("9.m.%-d\n", 42);
+	// ft_printf("A.m.%08d\n", 42);
+	// ft_printf("B.m.%.0d\n", 42000);
+	// ft_printf("C.m.%.d\n", 42000);
+	// ft_printf("D.m.%.2d\n", 8323);
+	// ft_printf("E.m.%.10d\n", 696969);
+	// ft_printf("F.r.%0d\n", 42);
 	//INT LENGTH TESTS ----------------------
 		// char a = '*';
 		// short b = 42;
@@ -115,13 +115,19 @@ int			main(void)
 	// ft_printf("%ls\n", "fug");
 	//INTEGRATED STRING TESTS ------------------
 	//HEX TESTS --------------------------------
-	// printf("%+x\n", 42);
-	// printf("%x\n", -42);
+	printf("1.r.%+x\n", 42);
+	printf("2.r.%x\n", -42);
+	ft_printf("1.m.%+x\n", 42);
+	ft_printf("2.m.%x\n", -42);
 	//POINTER TESTS
 	//UNSIGNED INT TESTS
-	// printf("%+u\n", 42);
-	// printf("%u\n", -42);
+	printf("3.r.%+u\n", 42);
+	printf("4.r.%u\n", -42);
+	ft_printf("3.m.%+u\n", 42);
+	ft_printf("4.m.%u\n", -42);
 	//OCTALS TESTS
-	// printf("%+o\n", 42);
-	// printf("%o\n", -42);
+	printf("5.r.%+o\n", 42);
+	printf("6.r.%o\n", -42);
+	ft_printf("5.m.%+o\n", 42);
+	ft_printf("6.m.%o\n", -42);
 }
