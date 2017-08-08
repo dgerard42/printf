@@ -26,6 +26,9 @@
 # define HASHTAG			0b1000
 # define ZERO				0b10000
 
+# define ULLMAX			18446744073709551615
+# define LLMAX			9223372036854775807
+
 typedef	struct		s_flags
 {
 	unsigned char	flag;

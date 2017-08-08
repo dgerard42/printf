@@ -29,6 +29,7 @@ void			print_prefix(t_flags *flags)
 	}
 }
 
+/*
 void				ft_putnbr_mem(t_flags *flags, intmax_t nbr, int base)
 {
 	int			isneg;
@@ -40,11 +41,27 @@ void				ft_putnbr_mem(t_flags *flags, intmax_t nbr, int base)
 		ft_putchar_mem(flags, '0');
 	while (nbr != 0 && power / base != 0)
 	{
-		//power = power / base;
-		//ft_putchar_mem(flags, (nbr * isneg / power) + '0');
-		//nbr = nbr - ((nbr / power) * power);
 		ft_putchar_mem(flags, (nbr * isneg / (power / base)) + '0');
 		nbr = nbr - isneg * (nbr * isneg / (power / base)) * (power / base);
+		power = power / base;
+	}
+}
+*/
+
+void				ft_putnbr_mem(t_flags *flags, intmax_t nbr, int base)
+{
+	int			isneg;
+	uintmax_t	power;
+
+	isneg = (nbr < 0) ? -1 : 1;
+	power = ft_power_ll(base, ft_numlen_ll(nbr, base));
+	power = power / base; //dividing here intsead of just doing 10^1 allows single digits to not have leadng 0s
+	if (nbr == 0)
+		ft_putchar_mem(flags, '0');
+	while (nbr != 0 && power != 0)
+	{
+		ft_putchar_mem(flags, ((nbr * isneg) / power) + '0');
+		nbr = nbr - isneg * ((nbr * isneg) / power) * power;
 		power = power / base;
 	}
 }
@@ -52,43 +69,25 @@ void				ft_putnbr_mem(t_flags *flags, intmax_t nbr, int base)
 void				ft_putunbr_mem(t_flags *flags, uintmax_t nbr, unsigned int base)
 {
 	int			alpha;
-//	int			isneg;
 	uintmax_t	power;
 
 	print_prefix(flags);
 	alpha = (flags->caps == true) ? '9' : 'Y';
-	if ((intmax_t)nbr < 0)
-	{
-		
-	}
-	power = ft_power_ull(base, ft_numlen_ull(nbr, base));
-//	isneg = ((intmax_t)nbr < 0) ? -1 : 1;
+ 	power = ft_power_ull(base, (ft_numlen_ull(nbr, base) - 1));
 	if (nbr == 0)
 		ft_putchar_mem(flags, '0');
-	while (nbr != 0 && power / base != 0)
+	while (nbr != 0 && power != 0)
 	{
-		// if ((nbr / power) > 9)
-		// 	ft_putchar_mem(flags, (nbr / power) + alpha);
-		// else
-		// 	ft_putchar_mem(flags, (nbr / power) + '0');
-		// nbr = nbr - ((nbr / power) * power);
-		// power = power / base;
-		// if ((nbr / (power / base)) > 9)
-		// 	ft_putchar_mem(flags, (nbr * isneg / (power / base)) + alpha);
-		// else
-		// 	ft_putchar_mem(flags, (nbr * isneg / (power / base)) + '0');
-		// nbr = nbr - isneg * ((nbr * isneg / (power / base)) * (power / base));
-		//
-		if ((nbr / (power / base)) > 9)
-			ft_putchar_mem(flags, (nbr / (power / base)) + alpha);
+		if ((nbr / power) > 9)
+			ft_putchar_mem(flags, (nbr / power) + alpha);
 		else
-			ft_putchar_mem(flags, (nbr / (power / base)) + '0');
-		nbr = nbr - (nbr / (power / base)) * (power / base);
+			ft_putchar_mem(flags, (nbr / power) + '0');
+		nbr = nbr - (nbr / power) * power;
 		power = power / base;
 	}
 }
 
-//	9223372036854775807
+#include <limits.h>
 
 /**/
 int 				main(void)
@@ -96,27 +95,27 @@ int 				main(void)
 	t_flags	flags;
 
 	flags.caps = true;
-	// ft_putnbr_mem(&flags, 42, 10);
-	// printf("\n");
-	// ft_putnbr_mem(&flags, -42, 10);
-	// printf("\n");
-	// ft_putnbr_mem(&flags, 9223372036854775807, 10);
-	// printf("\n");
-	// ft_putnbr_mem(&flags, -9223372036854775807, 10);
-	// printf("\n");
-	// ft_putnbr_mem(&flags, -9223372036854775808, 10);
-	// printf("\n");
-	// ft_putnbr_mem(&flags, 9223372036854775807, 10);
-	// printf("\n");
-	// ft_putunbr_mem(&flags, 9223372036854775807, 10);
-	// printf("\n");
-	// ft_putunbr_mem(&flags, -9223372036854775807, 10);
-	// printf("\n");
-	// printf("%lu\n", -9223372036854775807);
-	// ft_putunbr_mem(&flags, 42, 10);
-	// printf("\n");
-	ft_putunbr_mem(&flags, -12345678, 10);
+	ft_putnbr_mem(&flags, 2, 10);
 	printf("\n");
-	printf("%u\n", -12345678);
+	ft_putnbr_mem(&flags, -42, 10);
+	printf("\n");
+	ft_putnbr_mem(&flags, 9223372036854775807, 10);
+	printf("\n");
+	ft_putnbr_mem(&flags, -9223372036854775807, 10);
+	printf("\n");
+	ft_putnbr_mem(&flags, -9223372036854775808, 10);
+	printf("\n");
+	ft_putnbr_mem(&flags, 9223372036854775807, 10);
+	printf("\nunsigned VVV\n");
+	ft_putunbr_mem(&flags, LLMAX, 10);
+	printf("\n");
+	ft_putunbr_mem(&flags, -LLMAX, 10);
+	printf("\n");
+	printf("%lu\n", -LLMAX);
+	ft_putunbr_mem(&flags, 42, 16);
+	printf("\n");
+	ft_putunbr_mem(&flags, -42, 16);
+	printf("\n");
+	printf("%x\n", -42);
 }
 /**/
