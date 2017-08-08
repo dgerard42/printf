@@ -21,3 +21,4 @@ uintmax_t					ft_power_ull(uintmax_t nbr, uintmax_t power)
 		nbr *= tmp_nbr;
 	return (nbr);
 }
+//you overflow the value in this function when you move past the uintmax

@@ -21,7 +21,8 @@ SRCS = 	ft_printf.c\
 LIBFT = libft/ft_atoi.c\
 		libft/ft_isdigit.c\
 		libft/ft_strlen.c\
-		libft/ft_power.c\
+		libft/ft_power_ll.c\
+		libft/ft_power_ull.c\
 		libft/ft_numlen_ll.c\
 		libft/ft_numlen_ull.c\
 

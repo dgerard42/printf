@@ -43,6 +43,6 @@ int				ft_printf(const char *format, ...);
 void			parse_args(t_flags *flags, va_list *arg);
 void			ft_putchar_mem(t_flags *flags, char c);
 void			ft_putnbr_mem(t_flags *flags, intmax_t nbr, int base);
-void			ft_putunbr_mem(t_flags *flags, uintmax_t nbr, int base);
+void			ft_putunbr_mem(t_flags *flags, uintmax_t nbr, unsigned int base);
 
 #endif
