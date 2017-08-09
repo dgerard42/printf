@@ -17,6 +17,8 @@ intmax_t				ft_power_ll(intmax_t nbr, intmax_t power)
 	intmax_t	tmp_nbr;
 
 	tmp_nbr = nbr;
+	if (power == 0)
+		return (1);
 	while (power-- > 1)
 		nbr *= tmp_nbr;
 	return (nbr);

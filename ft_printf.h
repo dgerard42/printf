@@ -17,6 +17,7 @@
 # include <stdarg.h>
 # include <stdbool.h>
 //# include <stdlib.h>
+#include <limits.h> //mYBE USE these premade limits
 # include <stdio.h> //REMOVE THIS EVENTUALLY!!!!!!!!
 
 //delete these if you decide not to use them in the code itself

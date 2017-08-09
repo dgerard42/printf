@@ -17,6 +17,8 @@ uintmax_t					ft_power_ull(uintmax_t nbr, uintmax_t power)
 	uintmax_t tmp_nbr;
 
 	tmp_nbr = nbr;
+	if (power == 0)
+		return (1);
 	while (power-- > 1)
 		nbr *= tmp_nbr;
 	return (nbr);

@@ -29,25 +29,6 @@ void			print_prefix(t_flags *flags)
 	}
 }
 
-/*
-void				ft_putnbr_mem(t_flags *flags, intmax_t nbr, int base)
-{
-	int			isneg;
-	uintmax_t	power;
-
-	isneg = (nbr < 0) ? -1 : 1;
-	power = ft_power_ll(base, ft_numlen_ll(nbr, base));
-	if (nbr == 0)
-		ft_putchar_mem(flags, '0');
-	while (nbr != 0 && power / base != 0)
-	{
-		ft_putchar_mem(flags, (nbr * isneg / (power / base)) + '0');
-		nbr = nbr - isneg * (nbr * isneg / (power / base)) * (power / base);
-		power = power / base;
-	}
-}
-*/
-
 void				ft_putnbr_mem(t_flags *flags, intmax_t nbr, int base)
 {
 	int			isneg;
@@ -71,11 +52,12 @@ void				ft_putunbr_mem(t_flags *flags, uintmax_t nbr, unsigned int base)
 	int			alpha;
 	uintmax_t	power;
 
-	print_prefix(flags);
-	alpha = (flags->caps == true) ? '9' : 'Y';
+	alpha = (flags->caps == true) ? '7' : 'W';
  	power = ft_power_ull(base, (ft_numlen_ull(nbr, base) - 1));
 	if (nbr == 0)
 		ft_putchar_mem(flags, '0');
+	else		
+		print_prefix(flags);
 	while (nbr != 0 && power != 0)
 	{
 		if ((nbr / power) > 9)
@@ -87,14 +69,23 @@ void				ft_putunbr_mem(t_flags *flags, uintmax_t nbr, unsigned int base)
 	}
 }
 
-#include <limits.h>
+/*
+int					main(void)
+{
+	t_flags flags;
 
-/**/
+	flags.caps = false;
+	int x = -42;
+	ft_putunbr_mem(&flags, x, 16);
+}
+//here I was trying to send a neg int to see if I could get it to frint fewer ffffffs.
+*/
+/*
 int 				main(void)
 {
 	t_flags	flags;
 
-	flags.caps = true;
+	flags.caps = false;
 	ft_putnbr_mem(&flags, 2, 10);
 	printf("\n");
 	ft_putnbr_mem(&flags, -42, 10);
@@ -107,15 +98,16 @@ int 				main(void)
 	printf("\n");
 	ft_putnbr_mem(&flags, 9223372036854775807, 10);
 	printf("\nunsigned VVV\n");
-	ft_putunbr_mem(&flags, LLMAX, 10);
+	ft_putunbr_mem(&flags, 2, 10);
 	printf("\n");
-	ft_putunbr_mem(&flags, -LLMAX, 10);
+	ft_putunbr_mem(&flags, 4242424242, 10);
 	printf("\n");
-	printf("%lu\n", -LLMAX);
-	ft_putunbr_mem(&flags, 42, 16);
-	printf("\n");
+	printf("%u\n", 4242424242);
 	ft_putunbr_mem(&flags, -42, 16);
 	printf("\n");
 	printf("%x\n", -42);
+	ft_putunbr_mem(&flags, ULLMAX, 16);
+	printf("\n");
+	printf("%llx\n", ULLMAX);
 }
-/**/
+*/

@@ -49,7 +49,8 @@ void			print_signed(t_flags *flags, va_list *arg, int base)
 	if (flags->flag & 0b1)
 		ft_putnbr_mem(flags, i, base);
 	while (padding-- > 0)
-		(flags->flag & 0b10000 || flags->presicion > 0) ? ft_putchar_mem(flags, '0') : ft_putchar_mem(flags, ' ');
+		(flags->flag & 0b10000 && !(flags->flag & 0b1)) ? ft_putchar_mem(flags, '0') : ft_putchar_mem(flags, ' ');
+		//(flags->flag & 0b10000 || flags->presicion > 0) ? ft_putchar_mem(flags, '0') : ft_putchar_mem(flags, ' ');
 	if (!(flags->flag & 0b1) || flags->presicion > ft_numlen_ll(i, base))
 		ft_putnbr_mem(flags, i, base);
 }
@@ -61,8 +62,10 @@ void			print_unsigned(t_flags *flags, va_list *arg, int base)
 
 	i = va_arg(*(arg), uintmax_t);
 	padding = (flags->width == 0) ? flags->presicion - ft_numlen_ull(i, base) : flags->width - ft_numlen_ull(i, base);
-	if (!(flags->flag & 0b10) && flags->flag & 0b100 && i >= 0)
-		ft_putchar_mem(flags, ' ');
+	if (flags->flag & 0b1000)
+		padding = padding - 2;
+//	if (!(flags->flag & 0b10) && flags->flag & 0b100 && i >= 0)
+//		ft_putchar_mem(flags, ' ');
 	if (flags->flag & 0b1)
 		ft_putunbr_mem(flags, i, base);
 	while (padding-- > 0)
@@ -101,6 +104,12 @@ void			print_unsigned()
 void			print_pointer()
 {
 
+}
+
+void			grab_args(t_flags *flags, va_list *arg)
+{
+	here is where you might grab each arg depending on its length specifier.
+	but, that won't solve your problem, because a negative unsigned will be autocast to ll either way
 }
 */
 
