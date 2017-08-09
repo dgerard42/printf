@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 /*
-t_specifier		spec_functs[6]
+t_spec		spec_functs[6]
 {
 	&print_char, &print_digit, &print_octal, &print_string, &print_unsigned,
 	&print_hex, &print_pointer
@@ -30,6 +30,22 @@ void			print_char(t_flags *flags, va_list *arg)
 		ft_putchar_mem(flags, ' ');
 	if (!(flags->flag & 0b1))
 		ft_putchar_mem(flags, c);
+}
+
+void			typecast_num(t_flags *flags, uintmax_t nbr, int base)
+{
+	if ((flags->spec == 3 || flags->spec == 5 || flags->spec == 6) && flags->length == 0)
+		ft_putunbr_mem(flags, (unsigned int)nbr, base);
+	else if ((flags->spec == 3 || flags->spec == 5 || flags->spec == 6) && flags->length == 1)
+		ft_putunbr_mem(flags, (unsigned char)nbr, base);
+	else if ((flags->spec == 3 || flags->spec == 5 || flags->spec == 6) && flags->length == 2)
+		ft_putunbr_mem(flags, (unsigned short)nbr, base);
+	else if ((flags->spec == 3 || flags->spec == 5 || flags->spec == 6) && (flags->length == 3 || flags->length == 5))
+		ft_putunbr_mem(flags, nbr, base);
+	else if ((flags->spec == 3 || flags->spec == 5 || flags->spec == 6) && flags->length == 4)
+		ft_putunbr_mem(flags, (unsigned long)nbr, base);
+	else if ((flags->spec == 3 || flags->spec == 5 || flags->spec == 6) && flags->length == 6)
+		ft_putunbr_mem(flags, (size_t)nbr, base);
 }
 
 //to speed things up, stop putting function calls in conditional statements
@@ -67,11 +83,11 @@ void			print_unsigned(t_flags *flags, va_list *arg, int base)
 //	if (!(flags->flag & 0b10) && flags->flag & 0b100 && i >= 0)
 //		ft_putchar_mem(flags, ' ');
 	if (flags->flag & 0b1)
-		ft_putunbr_mem(flags, i, base);
+		typecast_num(flags, i, base);
 	while (padding-- > 0)
 		(flags->flag & 0b10000 || flags->presicion > 0) ? ft_putchar_mem(flags, '0') : ft_putchar_mem(flags, ' ');
 	if (!(flags->flag & 0b1) || flags->presicion > ft_numlen_ull(i, base))
-		ft_putunbr_mem(flags, i, base);
+		typecast_num(flags, i, base);
 }
 
 void			print_string(t_flags *flags, va_list *arg)
@@ -97,36 +113,27 @@ void			print_string(t_flags *flags, va_list *arg)
 }
 
 /*
-void			print_unsigned()
-{
-
-}
 void			print_pointer()
 {
 
 }
-
-void			grab_args(t_flags *flags, va_list *arg)
-{
-	here is where you might grab each arg depending on its length specifier.
-	but, that won't solve your problem, because a negative unsigned will be autocast to ll either way
-}
 */
+
 
 void			parse_args(t_flags *flags, va_list *arg)
 {
-//	printf("flag%d, width%d, presicion%d, length%d, specifier%d, written_chars%d\n",
-//		flags->flag, flags->width, flags->presicion, flags->length, flags->specifier, flags->written_chars);
-	if(flags->specifier == 1)
+//	printf("flag%d, width%d, presicion%d, length%d, spec%d, written_chars%d\n",
+//		flags->flag, flags->width, flags->presicion, flags->length, flags->spec, flags->written_chars);
+	if(flags->spec == 1)
 		print_char(flags, arg);
-	else if(flags->specifier == 2)
+	else if(flags->spec == 2)
 		print_signed(flags, arg, 10);
-	else if(flags->specifier == 3)
+	else if(flags->spec == 3)
 		print_unsigned(flags, arg, 8);
-	else if(flags->specifier == 4)
+	else if(flags->spec == 4)
 		print_string(flags, arg);
-	else if(flags->specifier == 6)
+	else if(flags->spec == 6)
 		print_unsigned(flags, arg, 16);
-	else if (flags->specifier == 5)
+	else if (flags->spec == 5)
 		print_unsigned(flags, arg, 10);
 }

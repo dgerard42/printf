@@ -22,9 +22,9 @@ void			print_prefix(t_flags *flags)
 {
 	if (flags->flag & 0b1000)
 	{
-		if (flags->specifier == 3 || flags->specifier == 6)
+		if (flags->spec == 3 || flags->spec == 6)
 			ft_putchar_mem(flags, '0');
-		if (flags->specifier == 6)
+		if (flags->spec == 6)
 			(flags->caps == true) ? ft_putchar_mem(flags, 'X') : ft_putchar_mem(flags, 'x');
 	}
 }
@@ -56,7 +56,7 @@ void				ft_putunbr_mem(t_flags *flags, uintmax_t nbr, unsigned int base)
  	power = ft_power_ull(base, (ft_numlen_ull(nbr, base) - 1));
 	if (nbr == 0)
 		ft_putchar_mem(flags, '0');
-	else		
+	else
 		print_prefix(flags);
 	while (nbr != 0 && power != 0)
 	{

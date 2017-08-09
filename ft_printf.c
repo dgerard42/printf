@@ -89,21 +89,21 @@ const char 			*check_length(const char *format, t_flags *flags)
 
 const char 			*check_specifier(const char *format, t_flags *flags)
 {
-	flags->specifier = 0;
+	flags->spec = 0;
 	if (*format == 'c'|| *format == 'C')
-		flags->specifier = 1;
+		flags->spec = 1;
 	else if (*format == 'd' || *format == 'i' || *format == 'D')
-		flags->specifier = 2;
+		flags->spec = 2;
 	else if (*format == 'o' || *format == 'O')
-		flags->specifier = 3;
+		flags->spec = 3;
 	else if (*format == 's' || *format == 'S')
-		flags->specifier = 4;
+		flags->spec = 4;
 	else if (*format == 'u' || *format == 'U')
-		flags->specifier = 5;
+		flags->spec = 5;
 	else if (*format == 'x' || *format == 'X')
-		flags->specifier = 6;
+		flags->spec = 6;
 	else if (*format == 'p')
-		flags->specifier = 7;
+		flags->spec = 7;
 	flags->caps = (*format >= 'A' && *format <= 'Z') ? true : false;
 	return (format);
 }
@@ -138,7 +138,7 @@ int					ft_printf(const char *format, ...)
 		format = check_width_presicion(format, &flags);
 		format = check_length(format, &flags);
 		format = check_specifier(format, &flags);
-		if (flags.specifier != 0)
+		if (flags.spec != 0)
 			parse_args(&flags, &arg);
 		if (*format)
 			format++;

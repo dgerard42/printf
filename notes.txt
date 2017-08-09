@@ -13,7 +13,13 @@
 TO-DOS
 ~make your own abs value function
 
-~write an iterative putnbr
-~overcome the minmax problem with a sign multiplier
-~adjust it to putll
+*~write an iterative putnbr
+*~overcome the minmax problem with a sign multiplier
+*~adjust it to putll
 ~then make sure that it works with smaller data type maxes
+
+PROBLEMS
+~double % within the format string, not immediately after each other, and with
+flags, width, and presicion
+~negative numbers cast as unsigned, in data types
+~4294967296 and -4294967296 printed in hex
