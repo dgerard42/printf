@@ -32,19 +32,20 @@ void			print_char(t_flags *flags, va_list *arg)
 		ft_putchar_mem(flags, c);
 }
 
+//rm some of these elifs if they aren't nesecary
 void			typecast_num(t_flags *flags, uintmax_t nbr, int base)
 {
-	if ((flags->spec == 3 || flags->spec == 5 || flags->spec == 6) && flags->length == 0)
-		ft_putunbr_mem(flags, (unsigned int)nbr, base);
-	else if ((flags->spec == 3 || flags->spec == 5 || flags->spec == 6) && flags->length == 1)
-		ft_putunbr_mem(flags, (unsigned char)nbr, base);
-	else if ((flags->spec == 3 || flags->spec == 5 || flags->spec == 6) && flags->length == 2)
-		ft_putunbr_mem(flags, (unsigned short)nbr, base);
-	else if ((flags->spec == 3 || flags->spec == 5 || flags->spec == 6) && (flags->length == 3 || flags->length == 5))
-		ft_putunbr_mem(flags, nbr, base);
-	else if ((flags->spec == 3 || flags->spec == 5 || flags->spec == 6) && flags->length == 4)
+	if (flags->length == 4 || (flags->caps == true && flags->spec == 5))
 		ft_putunbr_mem(flags, (unsigned long)nbr, base);
-	else if ((flags->spec == 3 || flags->spec == 5 || flags->spec == 6) && flags->length == 6)
+	else if (flags->length == 0)
+		ft_putunbr_mem(flags, (unsigned int)nbr, base);
+	else if (flags->length == 1)
+		ft_putunbr_mem(flags, (unsigned char)nbr, base);
+	else if (flags->length == 2)
+		ft_putunbr_mem(flags, (unsigned short)nbr, base);
+	else if (flags->length == 3 || flags->length == 5)
+		ft_putunbr_mem(flags, nbr, base);
+	else if (flags->length == 6)
 		ft_putunbr_mem(flags, (size_t)nbr, base);
 }
 
