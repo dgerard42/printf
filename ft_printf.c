@@ -32,13 +32,13 @@ const char 			*check_flags(const char *format, t_flags *flags)
 	{
 		if (*format == '-' && check_dubs(format, '-'))
 			flags->flag += 0b00000001;
-		if (*format == '+' && check_dubs(format, '+'))
+		else if (*format == '+' && check_dubs(format, '+'))
 			flags->flag += 0b00000010;
-		if (*format == ' ' && check_dubs(format, ' '))
+		else if (*format == ' ' && check_dubs(format, ' '))
 			flags->flag += 0b00000100;
-		if (*format == '#' && check_dubs(format, '#'))
+		else if (*format == '#' && check_dubs(format, '#'))
 			flags->flag += 0b00001000;
-		if (*format == '0' && check_dubs(format, '0'))
+		else if (*format == '0' && check_dubs(format, '0'))
 			flags->flag += 0b00010000;
 		format++;
 	}
@@ -69,15 +69,15 @@ const char 			*check_length(const char *format, t_flags *flags)
 	{
 		if (*format == 'h' && *(format + 1) == 'h')
 			flags->length = 1;
-		if (*format == 'h' && *(format + 1) != 'h')
+		else if (*format == 'h' && *(format + 1) != 'h')
 			flags->length = 2;
-		if (*format == 'l' && *(format + 1) == 'l')
+		else if (*format == 'l' && *(format + 1) == 'l')
 			flags->length = 3;
-		if (*format == 'l' && *(format + 1) != 'l')
+		else if (*format == 'l' && *(format + 1) != 'l')
 			flags->length = 4;
-		if (*format == 'j')
+		else if (*format == 'j')
 			flags->length = 5;
-		if (*format == 'z')
+		else if (*format == 'z')
 			flags->length = 6;
 		if (flags->length == 1 || flags->length == 3)
 			format++;

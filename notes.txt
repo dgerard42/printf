@@ -11,16 +11,34 @@
 # **************************************************************************** #
 
 TO-DOS
-~make your own abs value function
-
 *~write an iterative putnbr
 *~overcome the minmax problem with a sign multiplier
 *~adjust it to putll
-~then make sure that it works with smaller data type maxes
+*~change as many ifs as possible to elifs for speed
+	*~make sure that everything works the same with the elif changes
+~to speed things up, stop putting function calls in conditional statements as much as possible
 
 PROBLEMS
 ~double % within the format string, not immediately after each other, and with
-flags, width, and presicion
+flags, width, and precision
 ~negative numbers cast as unsigned, in data types
 ~4294967296 and -4294967296 printed in hex
 ~typecast signed ints
+~open up and make print_signed && print_unsigned easier to read
+~then when debugged, close em up and put ternaries back in
+~presicion of ZERO
+
+void			print_signed or unsigned(t_flags *flags, va_list *arg, int base)
+{
+	have one function for both signed and unsigned precision.
+	grab the int with va arg beforehand and pass it.
+	subtract what is needed from precision
+	subtract what is needed from width
+	print spaces if there are leading padding spaces
+	print the sign or space for sign. Make sure the sign is what the number typecast is signed as
+		>>test that the typecasting stays through the ft pass to the print signed ft. if not, re-feed
+		through typecast ft
+	print the prefix if unsigned
+	print the number after typecasting
+	print any after padding. zeroes and spaces.
+}

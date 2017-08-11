@@ -17,6 +17,7 @@ CFLAGS = -Wall -Werror -Wextra
 SRCS = 	ft_printf.c\
 		parse_args.c\
 		outputs.c\
+		print_char_string.c\
 
 LIBFT = libft/ft_atoi.c\
 		libft/ft_isdigit.c\
