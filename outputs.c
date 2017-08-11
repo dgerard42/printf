@@ -37,12 +37,17 @@ void				ft_putnbr_mem(t_flags *flags, intmax_t nbr, int base)
 	isneg = (nbr < 0) ? -1 : 1;
 	power = ft_power_ll(base, ft_numlen_ll(nbr, base));
 	power = power / base; //dividing here intsead of just doing 10^1 allows single digits to not have leadng 0s
-	if (nbr == 0)
-		ft_putchar_mem(flags, '0');
+	// if (nbr == 0)
+	// 	ft_putchar_mem(flags, '0');
 	while (nbr != 0 && power != 0)
 	{
 		ft_putchar_mem(flags, ((nbr * isneg) / power) + '0');
 		nbr = nbr - isneg * ((nbr * isneg) / power) * power;
+		power = power / base;
+	}
+	while (nbr == 0 && power > 0)
+	{
+		ft_putchar_mem(flags, '0');
 		power = power / base;
 	}
 }
@@ -54,9 +59,9 @@ void				ft_putunbr_mem(t_flags *flags, uintmax_t nbr, unsigned int base)
 
 	alpha = (flags->caps == true) ? '7' : 'W';
  	power = ft_power_ull(base, (ft_numlen_ull(nbr, base) - 1));
-	if (nbr == 0)
-		ft_putchar_mem(flags, '0');
-	else
+	// if (nbr == 0)
+	// 	ft_putchar_mem(flags, '0');
+	if (nbr != 0)
 		print_prefix(flags);
 	while (nbr != 0 && power != 0)
 	{
@@ -67,19 +72,12 @@ void				ft_putunbr_mem(t_flags *flags, uintmax_t nbr, unsigned int base)
 		nbr = nbr - (nbr / power) * power;
 		power = power / base;
 	}
+	while (nbr == 0 && power > 0)
+	{
+		ft_putchar_mem(flags, '0');
+		power = power / base;
+	}
 }
-
-/*
-int					main(void)
-{
-	t_flags flags;
-
-	flags.caps = false;
-	int x = -42;
-	ft_putunbr_mem(&flags, x, 16);
-}
-//here I was trying to send a neg int to see if I could get it to frint fewer ffffffs.
-*/
 /*
 int 				main(void)
 {

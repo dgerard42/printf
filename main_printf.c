@@ -46,6 +46,7 @@ int			main(void)
 	// printf("D.r.%.2d\n", 8323);
 	// printf("E.r.%.10d\n", 696969);
 	// printf("F.r.%0d\n", 42);
+		printf("G.r.%d\n", 100);
 	//
 	// ft_printf("1.m.%d\n", 2147483648);
 	// ft_printf("2.m.%d\n", -2147483648);
@@ -62,6 +63,7 @@ int			main(void)
 	// ft_printf("D.m.%.2d\n", 8323);
 	// ft_printf("E.m.%.10d\n", 696969);
 	// ft_printf("F.r.%0d\n", 42);
+		ft_printf("G.m.%d\n", 100);
 	//INT LENGTH TESTS ----------------------
 		// char a = '*';
 		// short b = 42;
@@ -115,12 +117,12 @@ int			main(void)
 	// ft_printf("%ls\n", "fug");
 	//INTEGRATED STRING TESTS ------------------
 	//HEX TESTS --------------------------------
-	printf("1.r.%+x\n", 42);
-	printf("2.r.%x\n", -42);
-	printf("3.r.%jx\n", -4294967296);
-	ft_printf("1.m.%+x\n", 42);
-	ft_printf("2.m.%x\n", -42);
-	ft_printf("3.m.%jx\n", -4294967296);
+	// printf("1.r.%+x\n", 42);
+	// printf("2.r.%x\n", -42);
+	// printf("3.r.%jx\n", -4294967296);
+	// ft_printf("1.m.%+x\n", 42);
+	// ft_printf("2.m.%x\n", -42);
+	// ft_printf("3.m.%jx\n", -4294967296);
 	//POINTER TESTS
 	//UNSIGNED INT TESTS
 	// printf("1.r.%+u\n", 42);
@@ -130,8 +132,10 @@ int			main(void)
 	// ft_printf("2.m.%u\n", -42);
 	// ft_printf("3.m.%U\n", 4294967296);
 	//OCTALS TESTS
-	// printf("5.r.%+o\n", 42);
-	// printf("6.r.%o\n", -42);
-	// ft_printf("5.m.%+o\n", 42);
-	// ft_printf("6.m.%o\n", -42);
+/*	printf("1.r.%+o\n", 42);
+	printf("2.r.%o\n", -42);
+	printf("3.r.%o\n", 40);
+	ft_printf("1.m.%+o\n", 42);
+	ft_printf("2.m.%o\n", -42);
+	ft_printf("3.m.%o\n", 40);*/
 }

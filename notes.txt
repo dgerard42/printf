@@ -23,3 +23,4 @@ PROBLEMS
 flags, width, and presicion
 ~negative numbers cast as unsigned, in data types
 ~4294967296 and -4294967296 printed in hex
+~typecast signed ints
