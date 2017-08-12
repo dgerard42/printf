@@ -21,12 +21,14 @@ TO-DOS
 PROBLEMS
 ~double % within the format string, not immediately after each other, and with
 flags, width, and precision
-~negative numbers cast as unsigned, in data types
-~4294967296 and -4294967296 printed in hex
-~typecast signed ints
-~open up and make print_signed && print_unsigned easier to read
+*~negative numbers cast as unsigned, in data types
+*~4294967296 and -4294967296 printed in hex
+*~typecast signed ints
+*~open up and make print_signed && print_unsigned easier to read
 ~then when debugged, close em up and put ternaries back in
-~presicion of ZERO
+*~precision of ZERO
+~length for strings
+~width and presicion for strings
 
 void			print_signed or unsigned(t_flags *flags, va_list *arg, int base)
 {

@@ -54,7 +54,10 @@ const char 			*check_width_presicion(const char *format, t_flags *flags)
 	while (flags->width != 0 && ft_isdigit((int)*format))
 		format++;
 	if (*format == '.')
+	{
+		flags->presicion = 0;
 		format++;
+	}
 	if (ft_isdigit((int)*format))
 		flags->presicion = ft_atoi(format);
 	while (flags->presicion != -1 && ft_isdigit((int)*format))

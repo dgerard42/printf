@@ -27,7 +27,7 @@ void			print_sign(t_flags *flags, intmax_t nbr)
 	else if (!(flags->flag & 0b10) && flags->flag & 0b100 && nbr >= 0)
 		ft_putchar_mem(flags, ' ');
 }
-//maybe make these two ^ v return ints for the presicion/width caluclations
+
 void			print_prefix(t_flags *flags, uintmax_t nbr)
 {
 	if (flags->flag & 0b1000 && nbr != 0)
@@ -55,7 +55,8 @@ void				ft_putnbr_mem(t_flags *flags, intmax_t nbr, int base)
 	}
 	while (nbr == 0 && power > 0)
 	{
-		ft_putchar_mem(flags, '0');
+		if (flags->presicion != 0)
+			ft_putchar_mem(flags, '0');
 		power = power / base;
 	}
 }
@@ -78,7 +79,8 @@ void				ft_putunbr_mem(t_flags *flags, uintmax_t nbr, unsigned int base)
 	}
 	while (nbr == 0 && power > 0)
 	{
-		ft_putchar_mem(flags, '0');
+		if (flags->presicion != 0 || (flags->flag & 0b1000 && flags->spec == 3))
+			ft_putchar_mem(flags, '0');
 		power = power / base;
 	}
 }

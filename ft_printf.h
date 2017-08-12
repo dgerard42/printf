@@ -16,7 +16,6 @@
 # include "libft/libft.h"
 # include <stdarg.h>
 # include <stdbool.h>
-//# include <stdlib.h>
 #include <limits.h> //mYBE USE these premade limits
 # include <stdio.h> //REMOVE THIS EVENTUALLY!!!!!!!!
 
@@ -42,7 +41,6 @@ typedef	struct		s_flags
 }					t_flags;
 
 //typedef char	*(*t_spec_functs)(size_t *, va_list);
-
 int				ft_printf(const char *format, ...);
 void			parse_args(t_flags *flags, va_list *arg);
 void			ft_putchar_mem(t_flags *flags, char c);

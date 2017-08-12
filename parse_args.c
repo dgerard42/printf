@@ -58,21 +58,23 @@ void			print_signed(t_flags *flags, va_list *arg, int base)
 	spaces = 0;
 	nbr = va_arg(*(arg), intmax_t);
 	nbr = typecast_num(flags, nbr);
-	if (flags->presicion > 0)
+	if (flags->presicion > ft_numlen_ll(nbr, base))
 		zeroes = flags->presicion - ft_numlen_ll(nbr, base);
-	else if (flags->flag & 0b10000 && flags->width > 0)
+	else if (flags->flag & 0b10000 && flags->width > 0 && !(flags->flag & 0b1))
 	{
 		zeroes = flags->width - ft_numlen_ll(nbr, base);
 		if (nbr < 0 || flags->flag & 0b10 || flags->flag & 0b100)
 			zeroes--;
 	}
 	spaces = flags->width - ft_numlen_ll(nbr, base) - zeroes;
+	if (nbr == 0 && flags->presicion == 0)
+		spaces++;
 	if (nbr < 0 || flags->flag & 0b10 || flags->flag & 0b100)
 			spaces--;
 	while (!(flags->flag & 0b1) && spaces-- > 0)
 		ft_putchar_mem(flags, ' ');
 	print_sign(flags, nbr);
-	while (zeroes-- > 0) //could be off by one here
+	while (zeroes-- > 0)
 		ft_putchar_mem(flags, '0');
 	ft_putnbr_mem(flags, nbr, base);
 	while (flags->flag & 0b1 && spaces-- > 0)
@@ -89,25 +91,27 @@ void			print_unsigned(t_flags *flags, va_list *arg, int base)
 	spaces = 0;
 	nbr = va_arg(*(arg), uintmax_t);
 	nbr = typecast_unum(flags, nbr);
-	if (flags->presicion > 0)
+	if (flags->presicion > ft_numlen_ull(nbr, base))
 		zeroes = flags->presicion - ft_numlen_ull(nbr, base);
-	else if (flags->flag & 0b10000 && flags->width > 0)
+	else if (flags->flag & 0b10000 && flags->width > 0 && !(flags->flag & 0b1))
 	{
 		zeroes = flags->width - ft_numlen_ull(nbr, base);
 		if (flags->flag & 0b1000 && flags->spec == 6)
 			zeroes = zeroes - 2;
-		else if (flags->flag & 0b100 && flags->spec == 3)
+		else if (flags->flag & 0b1000 && flags->spec == 3)
 			zeroes--;
 	}
 	spaces = flags->width - ft_numlen_ll(nbr, base) - zeroes;
+	if (nbr == 0 && flags->presicion == 0)
+		spaces++;
 	if (flags->flag & 0b1000 && flags->spec == 6)
 		spaces = spaces - 2;
-	else if (flags->flag & 0b100 && flags->spec == 3)
+	else if (flags->flag & 0b1000 && flags->spec == 3)
 		spaces--;
 	while (!(flags->flag & 0b1) && spaces-- > 0)
 		ft_putchar_mem(flags, ' ');
 	print_prefix(flags, nbr);
-	while (zeroes-- > 0) //could be off by one here
+	while (zeroes-- > 0)
 		ft_putchar_mem(flags, '0');
 	ft_putunbr_mem(flags, nbr, base);
 	while (flags->flag & 0b1 && spaces-- > 0)

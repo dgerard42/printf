@@ -29,12 +29,18 @@ void			print_string(t_flags *flags, va_list *arg)
 {
 	int		i;
 	char	*string;
+	int		spaces;
 	int		length;
 
 	i = 0;
 	string = va_arg(*(arg), char *);
+	if (!string)           //VVValso maybe make sure presicion and width dont apply to it, could be an issue
+		string = "(null)"; //ya might need to declare this differently, unstable b/c not malloced?
 	length = (int)ft_strlen(string);
-	while (!(flags->flag & 0b1) && flags->width-- - length > 0)
+	spaces = flags->width - length;
+	if (flags->presicion < length && flags->presicion != -1)
+		spaces = spaces + flags->presicion;
+	while (!(flags->flag & 0b1) && spaces-- > 0)
 		ft_putchar_mem(flags, ' ');
 	while (string[i] != '\0')
 	{
@@ -43,7 +49,7 @@ void			print_string(t_flags *flags, va_list *arg)
 				break;
 		ft_putchar_mem(flags, string[i++]);
 	}
-	while (flags->flag & 0b1 && flags->width-- - length > 0)
+	while (flags->flag & 0b1 && spaces-- > 0)
 		ft_putchar_mem(flags, ' ');
 }
 
