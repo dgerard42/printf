@@ -27,7 +27,7 @@
 # define HASHTAG			0b1000
 # define ZERO				0b10000
 
-# define ULLMAX			18446744073709551615
+# define ULLMAX			18446744073709551615//these were just for testing, rm eventually
 # define LLMAX			9223372036854775807
 
 typedef	struct		s_flags
@@ -50,5 +50,7 @@ void			ft_putnbr_mem(t_flags *flags, intmax_t nbr, int base);
 void			ft_putunbr_mem(t_flags *flags, uintmax_t nbr, unsigned int base);
 void			print_char(t_flags *flags, va_list *arg);
 void			print_string(t_flags *flags, va_list *arg);
+void			print_sign(t_flags *flags, intmax_t nbr);
+void			print_prefix(t_flags *flags, uintmax_t);
 
 #endif

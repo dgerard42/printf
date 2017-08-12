@@ -27,7 +27,7 @@ void			print_sign(t_flags *flags, intmax_t nbr)
 	else if (!(flags->flag & 0b10) && flags->flag & 0b100 && nbr >= 0)
 		ft_putchar_mem(flags, ' ');
 }
-
+//maybe make these two ^ v return ints for the presicion/width caluclations
 void			print_prefix(t_flags *flags, uintmax_t nbr)
 {
 	if (flags->flag & 0b1000 && nbr != 0)
@@ -39,11 +39,6 @@ void			print_prefix(t_flags *flags, uintmax_t nbr)
 	}
 }
 
-void				print_presicion(t_flags *flags, uintmax_t nbr)
-{
-
-}
-
 void				ft_putnbr_mem(t_flags *flags, intmax_t nbr, int base)
 {
 	int			isneg;
@@ -52,7 +47,6 @@ void				ft_putnbr_mem(t_flags *flags, intmax_t nbr, int base)
 	isneg = (nbr < 0) ? -1 : 1;
 	power = ft_power_ll(base, ft_numlen_ll(nbr, base));
 	power = power / base; //dividing here intsead of just doing 10^1 allows single digits to not have leadng 0s
-	print_sign(flags, nbr);
 	while (nbr != 0 && power != 0)
 	{
 		ft_putchar_mem(flags, ((nbr * isneg) / power) + '0');
@@ -73,7 +67,6 @@ void				ft_putunbr_mem(t_flags *flags, uintmax_t nbr, unsigned int base)
 
 	alpha = (flags->caps == true) ? '7' : 'W';
  	power = ft_power_ull(base, (ft_numlen_ull(nbr, base) - 1));
-	print_prefix(flags, nbr);
 	while (nbr != 0 && power != 0)
 	{
 		if ((nbr / power) > 9)

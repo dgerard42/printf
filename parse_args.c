@@ -18,86 +18,100 @@ t_spec		spec_functs[6]
 	&print_hex, &print_pointer
 };
 */
-//rm some of these elifs if they aren't nesecary
-void			typecast_unum(t_flags *flags, uintmax_t nbr, int base)
+uintmax_t			typecast_unum(t_flags *flags, uintmax_t nbr)
 {
 	if (flags->length == 4 || (flags->caps == true && flags->spec == 5))
-		ft_putunbr_mem(flags, (unsigned long)nbr, base);
+		nbr = (unsigned long)nbr;
 	else if (flags->length == 0)
-		ft_putunbr_mem(flags, (unsigned int)nbr, base);
+		nbr = (unsigned int)nbr;
 	else if (flags->length == 1)
-		ft_putunbr_mem(flags, (unsigned char)nbr, base);
+		nbr = (unsigned char)nbr;
 	else if (flags->length == 2)
-		ft_putunbr_mem(flags, (unsigned short)nbr, base);
-	else if (flags->length == 3 || flags->length == 5)
-		ft_putunbr_mem(flags, nbr, base);
+		nbr = (unsigned short)nbr;
 	else if (flags->length == 6)
-		ft_putunbr_mem(flags, (size_t)nbr, base);
+		nbr = (size_t)nbr;
+	return (nbr);
 }
 
-void			typecast_num(t_flags *flags, intmax_t nbr, int base)
+intmax_t			typecast_num(t_flags *flags, intmax_t nbr)
 {
 	if (flags->length == 4 || (flags->caps == true && flags->spec == 5))
-		ft_putnbr_mem(flags, (long int)nbr, base);
+		nbr = (long int)nbr;
 	else if (flags->length == 0)
-		ft_putnbr_mem(flags, (int)nbr, base);
+		nbr = (int)nbr;
 	else if (flags->length == 1)
-		ft_putnbr_mem(flags, (signed char)nbr, base);
+		nbr = (signed char)nbr;
 	else if (flags->length == 2)
-		ft_putnbr_mem(flags, (short int)nbr, base);
-	else if (flags->length == 3 || flags->length == 5)
-		ft_putnbr_mem(flags, nbr, base);
+		nbr = (short int)nbr;
 	else if (flags->length == 6)
-		ft_putnbr_mem(flags, (size_t)nbr, base);
+		nbr = (size_t)nbr;
+	return (nbr);
 }
 
 void			print_signed(t_flags *flags, va_list *arg, int base)
 {
-	long long 	i;
-	int			padding;
+	intmax_t	nbr;
+	int			zeroes;
+	int			spaces;
 
-	i = va_arg(*(arg), intmax_t);
-	if (flags->width == 0)
-		padding = flags->presicion - ft_numlen_ll(i, base);
-	else
-		padding = flags->width - ft_numlen_ll(i, base);
-	if (flags->flag & 0b1)
-		typecast_num(flags, i, base);
-	while (padding-- > 0)
+	zeroes = 0;
+	spaces = 0;
+	nbr = va_arg(*(arg), intmax_t);
+	nbr = typecast_num(flags, nbr);
+	if (flags->presicion > 0)
+		zeroes = flags->presicion - ft_numlen_ll(nbr, base);
+	else if (flags->flag & 0b10000 && flags->width > 0)
 	{
-		if (flags->flag & 0b10000 && !(flags->flag & 0b1))
-			ft_putchar_mem(flags, '0');
-		else
-			ft_putchar_mem(flags, ' ');
+		zeroes = flags->width - ft_numlen_ll(nbr, base);
+		if (nbr < 0 || flags->flag & 0b10 || flags->flag & 0b100)
+			zeroes--;
 	}
-	if (!(flags->flag & 0b1) || flags->presicion > ft_numlen_ll(i, base))
-		typecast_num(flags, i, base);
+	spaces = flags->width - ft_numlen_ll(nbr, base) - zeroes;
+	if (nbr < 0 || flags->flag & 0b10 || flags->flag & 0b100)
+			spaces--;
+	while (!(flags->flag & 0b1) && spaces-- > 0)
+		ft_putchar_mem(flags, ' ');
+	print_sign(flags, nbr);
+	while (zeroes-- > 0) //could be off by one here
+		ft_putchar_mem(flags, '0');
+	ft_putnbr_mem(flags, nbr, base);
+	while (flags->flag & 0b1 && spaces-- > 0)
+		ft_putchar_mem(flags, ' ');
 }
-
 
 void			print_unsigned(t_flags *flags, va_list *arg, int base)
 {
-	long long 	i;
-	int			padding;
+	uintmax_t 	nbr;
+	int			zeroes;
+	int			spaces;
 
-	i = va_arg(*(arg), uintmax_t);
-	if (flags->width == 0)
-		padding = flags->presicion - ft_numlen_ull(i, base);
-	else
-		padding = flags->width - ft_numlen_ull(i, base);
-	if (flags->flag & 0b1000)
-		padding = padding - 2;
-	if (flags->flag & 0b1)
-		typecast_unum(flags, i, base);
-	while (padding-- > 0)
+	zeroes = 0;
+	spaces = 0;
+	nbr = va_arg(*(arg), uintmax_t);
+	nbr = typecast_unum(flags, nbr);
+	if (flags->presicion > 0)
+		zeroes = flags->presicion - ft_numlen_ull(nbr, base);
+	else if (flags->flag & 0b10000 && flags->width > 0)
 	{
-		if (flags->flag & 0b10000 || flags->presicion > 0)
-			ft_putchar_mem(flags, '0');
-		else
-			ft_putchar_mem(flags, ' ');
+		zeroes = flags->width - ft_numlen_ull(nbr, base);
+		if (flags->flag & 0b1000 && flags->spec == 6)
+			zeroes = zeroes - 2;
+		else if (flags->flag & 0b100 && flags->spec == 3)
+			zeroes--;
 	}
-	if (!(flags->flag & 0b1) || flags->presicion > ft_numlen_ull(i, base))
-		typecast_unum(flags, i, base);
+	spaces = flags->width - ft_numlen_ll(nbr, base) - zeroes;
+	if (flags->flag & 0b1000 && flags->spec == 6)
+		spaces = spaces - 2;
+	else if (flags->flag & 0b100 && flags->spec == 3)
+		spaces--;
+	while (!(flags->flag & 0b1) && spaces-- > 0)
+		ft_putchar_mem(flags, ' ');
+	print_prefix(flags, nbr);
+	while (zeroes-- > 0) //could be off by one here
+		ft_putchar_mem(flags, '0');
+	ft_putunbr_mem(flags, nbr, base);
+	while (flags->flag & 0b1 && spaces-- > 0)
+		ft_putchar_mem(flags, ' ');
 }
 
 void			parse_args(t_flags *flags, va_list *arg)
