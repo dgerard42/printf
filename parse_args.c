@@ -20,7 +20,9 @@ t_spec		spec_functs[6]
 */
 uintmax_t			typecast_unum(t_flags *flags, uintmax_t nbr)
 {
-	if (flags->length == 4 || (flags->caps == true && flags->spec == 5))
+	if (flags->spec == 7)
+		return (nbr);
+	else if (flags->length == 4 || (flags->caps == true && flags->spec == 5))
 		nbr = (unsigned long)nbr;
 	else if (flags->length == 0)
 		nbr = (unsigned int)nbr;
@@ -96,7 +98,7 @@ void			print_unsigned(t_flags *flags, va_list *arg, int base)
 	else if (flags->flag & 0b10000 && flags->width > 0 && !(flags->flag & 0b1))
 	{
 		zeroes = flags->width - ft_numlen_ull(nbr, base);
-		if (flags->flag & 0b1000 && flags->spec == 6)
+		if ((flags->flag & 0b1000 && flags->spec == 6) || flags->spec == 7)
 			zeroes = zeroes - 2;
 		else if (flags->flag & 0b1000 && flags->spec == 3)
 			zeroes--;
@@ -104,7 +106,7 @@ void			print_unsigned(t_flags *flags, va_list *arg, int base)
 	spaces = flags->width - ft_numlen_ll(nbr, base) - zeroes;
 	if (nbr == 0 && flags->presicion == 0)
 		spaces++;
-	if (flags->flag & 0b1000 && flags->spec == 6)
+	if ((flags->flag & 0b1000 && flags->spec == 6) || flags->spec == 7)
 		spaces = spaces - 2;
 	else if (flags->flag & 0b1000 && flags->spec == 3)
 		spaces--;
@@ -122,7 +124,7 @@ void			parse_args(t_flags *flags, va_list *arg)
 {
 //	printf("flag%d, width%d, presicion%d, length%d, spec%d, written_chars%d\n",
 //		flags->flag, flags->width, flags->presicion, flags->length, flags->spec, flags->written_chars);
-	if(flags->spec == 1)
+	if(flags->spec == 1 || flags->spec == 8)
 		print_char(flags, arg);
 	else if(flags->spec == 2)
 		print_signed(flags, arg, 10);
@@ -130,7 +132,7 @@ void			parse_args(t_flags *flags, va_list *arg)
 		print_unsigned(flags, arg, 8);
 	else if(flags->spec == 4)
 		print_string(flags, arg);
-	else if(flags->spec == 6)
+	else if(flags->spec == 6 || flags->spec == 7)
 		print_unsigned(flags, arg, 16);
 	else if (flags->spec == 5)
 		print_unsigned(flags, arg, 10);

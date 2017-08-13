@@ -30,11 +30,11 @@ void			print_sign(t_flags *flags, intmax_t nbr)
 
 void			print_prefix(t_flags *flags, uintmax_t nbr)
 {
-	if (flags->flag & 0b1000 && nbr != 0)
+	if ((flags->flag & 0b1000 && nbr != 0) || flags->spec == 7)
 	{
-		if (flags->spec == 3 || flags->spec == 6)
+		if (flags->spec == 3 || flags->spec == 6 || flags->spec == 7)
 			ft_putchar_mem(flags, '0');
-		if (flags->spec == 6)
+		if (flags->spec == 6 || flags->spec == 7)
 			(flags->caps == true) ? ft_putchar_mem(flags, 'X') : ft_putchar_mem(flags, 'x');
 	}
 }

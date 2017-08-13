@@ -107,7 +107,9 @@ const char 			*check_specifier(const char *format, t_flags *flags)
 		flags->spec = 6;
 	else if (*format == 'p')
 		flags->spec = 7;
-	flags->caps = (*format >= 'A' && *format <= 'Z') ? true : false;
+	else if (*format == '%')
+		flags->spec = 8;
+	flags->caps = (*format >='A' && *format <= 'Z') ? true : false;
 	return (format);
 }
 
@@ -115,11 +117,6 @@ const char 			*print_format_string(const char *format, t_flags *flags)
 {
 	while (*format != '%' && *format)
 		ft_putchar_mem(flags, *format++);
-	if (*format && *format == '%' && *(format + 1) == '%')
-	{
-		ft_putchar_mem(flags, *format++);
-		format++;
-	}
 	if (*format && *format == '%')
 		format++;
 	return (format);

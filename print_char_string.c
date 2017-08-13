@@ -16,7 +16,10 @@ void			print_char(t_flags *flags, va_list *arg)
 {
 	char	c;
 
-	c = va_arg(*(arg), int);
+	if (flags->spec != 8)
+		c = va_arg(*(arg), int);
+	else
+		c = '%';
  	if (flags->flag & 0b1)
 		ft_putchar_mem(flags, c);
 	while (flags->width-- > 1)

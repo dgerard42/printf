@@ -24,20 +24,20 @@ int			main(void)
 	// printf("3.r.%-8c\n", '*');
 	// printf("4.r.%2c\n", '*');
 	// printf("5.r.%-c\n", '*');
-	printf("6.r.%5%\n");
-	printf("7.r.%-5%\n");
-	printf("8.r.%.0%\n");
-	printf("9.r%   %\n", "test");
+	// printf("6.r.%5%\n");
+	// printf("7.r.%-5%\n");
+	// printf("8.r.%.0%\n");
+	// printf("9.r%   %\n", "test");
 	//
 	// ft_printf("1.m.%c\n", '*');
 	// ft_printf("2.m.%%%c\n", '*');
 	// ft_printf("3.m.%-8c\n", '*');
 	// ft_printf("4.m.%2c\n", '*');
 	// ft_printf("5.m.%-c\n", '*');
-	ft_printf("6.m.%5%\n");
-	ft_printf("7.m.%-5%\n");
-	ft_printf("8.m.%.0%\n");
-	ft_printf("9.m%   %\n", "test");
+	// ft_printf("6.m.%5%\n");
+	// ft_printf("7.m.%-5%\n");
+	// ft_printf("8.m.%.0%\n");
+	// ft_printf("9.m%   %\n", "test");
 	//INT TESTS -----------------------------
 	// *printf("i.r.0.%d\n", 2147483648);
 	// printf("1.r.%d\n", 2147483648);
@@ -216,7 +216,4 @@ int			main(void)
 	// ft_printf("m.7.%-5.10o\n", 2500);
 	// ft_printf("m.8.%-#6o\n", 2500);
 	// ft_printf("m.9.%#6o\n", 2500);
-	//DOUBLE %% TESTS-----------------------------
-
-	//POINTER TESTS--------------------------------
-}
+	}
