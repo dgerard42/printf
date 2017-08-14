@@ -103,8 +103,8 @@ const char 			*check_specifier(const char *format, t_flags *flags)
 		flags->spec = 4;
 	else if (*format == 'u' || *format == 'U')
 		flags->spec = 5;
-//	else if (*format == 'x' || *format == 'X')
-//		flags->spec = 6;
+	else if (*format == 'x' || *format == 'X')
+		flags->spec = 6;
 	else if (*format == 'p')
 		flags->spec = 7;
 	else if (*format == '%')
