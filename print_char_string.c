@@ -55,10 +55,3 @@ void			print_string(t_flags *flags, va_list *arg)
 	while (flags->flag & 0b1 && spaces-- > 0)
 		ft_putchar_mem(flags, ' ');
 }
-
-/*
-void			print_pointer()
-{
-
-}
-*/

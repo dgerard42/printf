@@ -14,13 +14,16 @@
 
 int					main(void)
 {
-	//POINTER TESTS--------------------------------
-	int	*ugh;
+	//POINTER TESTS -------------------------------
+	// int	*ugh;
 
-	printf("0.r.%p\n", 0);
-	printf("1.r.%p\n", ugh);
-	printf("2.r.%9.2p\n", 1234);
-	ft_printf("0.m.%p\n", 0);
-	ft_printf("1.m.%p\n", ugh);
-	ft_printf("2.m.%9.2p\n", 1234);
+	// printf("0.r.%p\n", 0);
+	// printf("1.r.%p\n", ugh);
+	// printf("2.r.%9.2p\n", 1234);
+	//
+	// ft_printf("0.m.%p\n", 0);
+	// ft_printf("1.m.%p\n", ugh);
+	// ft_printf("2.m.%9.2p\n", 1234);
+	//PRES MIXED WITH FLAGS ------------------------
+
 }

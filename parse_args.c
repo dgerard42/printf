@@ -82,7 +82,7 @@ void			print_signed(t_flags *flags, va_list *arg, int base)
 	while (flags->flag & 0b1 && spaces-- > 0)
 		ft_putchar_mem(flags, ' ');
 }
-
+//shit!! I think I can combine these two functions when you have to break them apart.
 void			print_unsigned(t_flags *flags, va_list *arg, int base)
 {
 	uintmax_t 	nbr;
