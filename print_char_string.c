@@ -42,7 +42,7 @@ void			print_string(t_flags *flags, va_list *arg)
 	length = (int)ft_strlen(string);
 	spaces = flags->width - length;
 	if (flags->presicion < length && flags->presicion != -1)
-		spaces = spaces + flags->presicion;
+		spaces = spaces - (flags->presicion - length);
 	while (!(flags->flag & 0b1) && spaces-- > 0)
 		ft_putchar_mem(flags, ' ');
 	while (string[i] != '\0')

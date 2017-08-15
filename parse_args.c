@@ -37,7 +37,7 @@ uintmax_t			typecast_unum(t_flags *flags, uintmax_t nbr)
 
 intmax_t			typecast_num(t_flags *flags, intmax_t nbr)
 {
-	if (flags->length == 4 || (flags->caps == true && flags->spec == 5))
+	if (flags->length == 4 || (flags->caps == true && flags->spec == 2))
 		nbr = (long int)nbr;
 	else if (flags->length == 0)
 		nbr = (int)nbr;
@@ -60,7 +60,7 @@ void			print_signed(t_flags *flags, va_list *arg, int base)
 	spaces = 0;
 	nbr = va_arg(*(arg), intmax_t);
 	nbr = typecast_num(flags, nbr);
-	if (flags->presicion > ft_numlen_ll(nbr, base))
+	if (flags->presicion >= ft_numlen_ll(nbr, base))
 		zeroes = flags->presicion - ft_numlen_ll(nbr, base);
 	else if (flags->flag & 0b10000 && flags->width > 0 && !(flags->flag & 0b1))
 	{
@@ -93,7 +93,7 @@ void			print_unsigned(t_flags *flags, va_list *arg, int base)
 	spaces = 0;
 	nbr = va_arg(*(arg), uintmax_t);
 	nbr = typecast_unum(flags, nbr);
-	if (flags->presicion > ft_numlen_ull(nbr, base))
+	if (flags->presicion >= ft_numlen_ull(nbr, base))
 		zeroes = flags->presicion - ft_numlen_ull(nbr, base);
 	else if (flags->flag & 0b10000 && flags->width > 0 && !(flags->flag & 0b1))
 	{
