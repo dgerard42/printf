@@ -15,9 +15,11 @@ NAME = libftprintf.a
 CFLAGS = -Wall -Werror -Wextra
 
 SRCS = 	ft_printf.c\
+		check_flags.c\
 		parse_args.c\
+		print_letters.c\
+		print_numbers.c\
 		outputs.c\
-		print_char_string.c\
 
 LIBFT = libft/ft_atoi.c\
 		libft/ft_isdigit.c\

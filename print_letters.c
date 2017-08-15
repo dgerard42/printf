@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_char_string.c                                :+:      :+:    :+:   */
+/*   print_letters.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dgerard <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/10 21:02:11 by dgerard           #+#    #+#             */
-/*   Updated: 2017/08/10 21:02:14 by dgerard          ###   ########.fr       */
+/*   Updated: 2017/08/14 20:43:36 by dgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void			print_char(t_flags *flags, va_list *arg)
 		c = va_arg(*(arg), int);
 	else
 		c = '%';
- 	if (flags->flag & 0b1)
+	if (flags->flag & 0b1)
 		ft_putchar_mem(flags, c);
 	while (flags->width-- > 1)
 		ft_putchar_mem(flags, ' ');
@@ -37,8 +37,8 @@ void			print_string(t_flags *flags, va_list *arg)
 
 	i = 0;
 	string = va_arg(*(arg), char *);
-	if (!string)           //VVValso maybe make sure presicion and width dont apply to it, could be an issue
-		string = "(null)"; //ya might need to declare this differently, unstable b/c not malloced?
+	if (!string)
+		string = "(null)";
 	length = (int)ft_strlen(string);
 	spaces = flags->width - length;
 	if (flags->presicion < length && flags->presicion != -1)
@@ -49,7 +49,7 @@ void			print_string(t_flags *flags, va_list *arg)
 	{
 		if (flags->presicion != -1)
 			if ((i + 1) > flags->presicion)
-				break;
+				break ;
 		ft_putchar_mem(flags, string[i++]);
 	}
 	while (flags->flag & 0b1 && spaces-- > 0)

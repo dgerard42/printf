@@ -6,7 +6,7 @@
 /*   By: dgerard <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/04 14:32:40 by dgerard           #+#    #+#             */
-/*   Updated: 2017/08/06 16:58:35 by dgerard          ###   ########.fr       */
+/*   Updated: 2017/08/14 20:39:35 by dgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,4 +23,3 @@ uintmax_t					ft_power_ull(uintmax_t nbr, uintmax_t power)
 		nbr *= tmp_nbr;
 	return (nbr);
 }
-//you overflow the value in this function when you move past the uintmax
