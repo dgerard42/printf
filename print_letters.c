@@ -15,15 +15,17 @@
 void			print_char(t_flags *flags, va_list *arg)
 {
 	char	c;
+	char	buffer;
 
+	buffer = (flags->spec == 8 && flags->flag & 0b10000) ? '0' : ' ';
 	if (flags->spec != 8)
 		c = va_arg(*(arg), int);
 	else
-		c = '%';
+		c = flags->invalid_spec;
 	if (flags->flag & 0b1)
 		ft_putchar_mem(flags, c);
 	while (flags->width-- > 1)
-		ft_putchar_mem(flags, ' ');
+		ft_putchar_mem(flags, buffer);
 	if (!(flags->flag & 0b1))
 		ft_putchar_mem(flags, c);
 }

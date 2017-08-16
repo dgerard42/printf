@@ -36,18 +36,53 @@ int					main(void)
 	// ft_printf("2.m.%04.5i\n", 42);
 	// ft_printf("3.m.%04.3i\n", 42);
 	// ft_printf("4.m.%04.2i\n", 42);
-	//TERRY'S TEST --------------------------------
+	//HARD TESTS --------------------------------
 	// printf("%5%\n");
+	// printf("r.%015u\n", 4294967295);
+	// printf("r.0.{%10R}\n");
+	// printf("r.1.{%-15Z}\n", 123);
+	// printf("r.2.% Zoooo\n");
+	// printf("r.3.{%}\n");
+	// wide char, ignore. printf("r.4.{% S}\n", "(null)");
 
 	// ft_printf("%5%\n");
-	//LONG WIDTH TESTS ----------------------------
-	printf("0.r.%ld\n", 2147483648);
-	printf("1.r.%lD\n", 2147483648);
-	printf("2.r.%D\n", 2147483648);
-	printf("3.r.%ld\n", 4294959296);
+	// ft_printf("m.%015u\n", 4294967295);
+	// ft_printf("m.0.{%10R}\n");
+	// ft_printf("m.1.{%-15Z}\n", 123);
+	// ft_printf("m.2.% Zoooo\n");
+	// ft_printf("m.3.{%}\n");
+	// wide char, ignore. ft_printf("m.4.{% S}\n", "(null)");
+	// LONG WIDTH TESTS ----------------------------
+	// printf("0.r.%ld\n", 2147483648);
+	// printf("1.r.%lD\n", 2147483648);
+	// printf("2.r.%D\n", 2147483648);
+	// printf("3.r.%ld\n", 4294959296);
+	//
+	// ft_printf("0.m.%ld\n", 2147483648);
+	// ft_printf("1.m.%lD\n", 2147483648);
+	// ft_printf("2.m.%D\n", 2147483648);
+	// ft_printf("3.m.%ld\n", 4294959296);
+	//FLAGS MIXED WITH PRESICION -------------------
+	//are these undefined behaviors?
+	//undefined!! printf("{%05.S}\n", L"42 c est cool");
+	//undefined!! printf("{%05.s}\n", 0);
+	//undefined!! printf("{%05.c}\n", 0);
+	printf("r.5.{%05.Z}\n", 0);
+	printf("r.6.{%05.%}\n", 0);
+	printf("r.7.%#.3o\n", 1);
+	printf("r.8.{%05.3%}\n", 0);
+	printf("r.9.{%0.7%}\n", 0);
+	printf("r.A.{%10%}\n", 0);
+	printf("r.B.{%10.3%}\n", 0);
 
-	ft_printf("0.m.%ld\n", 2147483648);
-	ft_printf("1.m.%lD\n", 2147483648);
-	ft_printf("2.m.%D\n", 2147483648);
-	ft_printf("3.m.%ld\n", 4294959296);
+	ft_printf("m.5.{%05.Z}\n", 0);
+	ft_printf("m.6.{%05.%}\n", 0);
+	ft_printf("m.7.%#.3o\n", 1);
+	ft_printf("m.8.{%05.3%}\n", 0);
+	ft_printf("m.9.{%0.7%}\n", 0);
+	ft_printf("m.A.{%10%}\n", 0);
+	ft_printf("m.B.{%10.3%}\n", 0);
+	//min width flag 0 -------------------------------
+	// undefined!! printf("{%05s}\n", "abc");
+	// undefined!! printf("{%03c}\n", 0);
 }

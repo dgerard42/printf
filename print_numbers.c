@@ -48,7 +48,8 @@ void			print_signed(t_flags *flags, va_list *arg, int base)
 	print_sign(flags, nbr);
 	while (zeroes-- > 0)
 		ft_putchar_mem(flags, '0');
-	ft_putnbr_mem(flags, nbr, base);
+	(flags->spec == 8) ? ft_putchar_mem(flags, nbr) :
+		ft_putnbr_mem(flags, nbr, base);
 	while (flags->flag & 0b1 && spaces-- > 0)
 		ft_putchar_mem(flags, ' ');
 }
@@ -82,6 +83,8 @@ void			print_unsigned(t_flags *flags, va_list *arg, int base)
 	nbr = typecast_unum(flags, nbr);
 	zeroes = zeroes_unsigned(flags, nbr, base);
 	spaces = flags->width - ft_numlen_ll(nbr, base) - zeroes;
+	if (flags->flag & 1000 && flags->spec == 3)
+		zeroes--;
 	if (nbr == 0 && flags->presicion == 0)
 		spaces++;
 	if ((flags->flag & 0b1000 && flags->spec == 6) || flags->spec == 7)

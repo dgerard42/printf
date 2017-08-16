@@ -1,1 +1,0 @@
-gcc -g second_main.c ft_printf.c outputs.c parse_args.c print_letters.c print_numbers.c check_flags.c libft/ft_atoi.c libft/ft_isdigit.c libft/ft_numlen_ll.c libft/ft_numlen_ull.c libft/ft_power_ll.c libft/ft_power_ull.c libft/ft_strlen.c
