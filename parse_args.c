@@ -16,7 +16,7 @@ uintmax_t			typecast_unum(t_flags *flags, uintmax_t nbr)
 {
 	if (flags->spec == 7)
 		return (nbr);
-	else if (flags->length == 4 || (flags->caps == true && flags->spec == 5))
+	if (flags->length == 4 || (flags->caps == true && flags->spec != 6))
 		nbr = (unsigned long)nbr;
 	else if (flags->length == 0)
 		nbr = (unsigned int)nbr;

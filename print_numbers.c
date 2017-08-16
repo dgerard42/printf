@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-int				zeroes_signed(t_flags *flags, int nbr, int base)
+int				zeroes_signed(t_flags *flags, intmax_t nbr, int base)
 {
 	int zeroes;
 
@@ -53,7 +53,7 @@ void			print_signed(t_flags *flags, va_list *arg, int base)
 		ft_putchar_mem(flags, ' ');
 }
 
-int				zeroes_unsigned(t_flags *flags, int nbr, int base)
+int				zeroes_unsigned(t_flags *flags, uintmax_t nbr, int base)
 {
 	int zeroes;
 
