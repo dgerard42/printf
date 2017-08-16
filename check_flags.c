@@ -107,8 +107,11 @@ const char			*check_specifier(const char *format, t_flags *flags)
 		flags->spec = 6;
 	else if (*format == 'p')
 		flags->spec = 7;
-	else if (*format == '%')
+	else if (*format)
+	{
+		flags->invalid_spec = *format;
 		flags->spec = 8;
+	}
 	flags->caps = (*format >= 'A' && *format <= 'Z') ? true : false;
 	return (format);
 }

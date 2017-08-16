@@ -39,16 +39,19 @@ int					main(void)
 	//HARD TESTS --------------------------------
 	// printf("%5%\n");
 	// printf("r.%015u\n", 4294967295);
-	printf("r.{%10R}\n");
-	printf("r.{%-15Z}", 123);
-	printf("% Zoooo\n");
-	printf("{%}\n");
-	printf("{% S}\n", L"(null)");
+	// printf("r.0.{%10R}\n");
+	// printf("r.1.{%-15Z}\n", 123);
+	// printf("r.2.% Zoooo\n");
+	// printf("r.3.{%}\n");
+	printf("r.4.{% S}\n", L"(null)");
 
 	// ft_printf("%5%\n");
 	// ft_printf("m.%015u\n", 4294967295);
-	ft_printf("r.{%10R}\n");
-	ft_printf("r.{%-15Z}\n", 123);
+	// ft_printf("m.0.{%10R}\n");
+	// ft_printf("m.1.{%-15Z}\n", 123);
+	// ft_printf("m.2.% Zoooo\n");
+	// ft_printf("m.3.{%}\n");
+	ft_printf("m.4.{% S}\n", L"(null)");
 	//LONG WIDTH TESTS ----------------------------
 	// printf("0.r.%ld\n", 2147483648);
 	// printf("1.r.%lD\n", 2147483648);
@@ -64,9 +67,13 @@ int					main(void)
 	//undefined!! printf("{%05.S}\n", L"42 c est cool");
 	//undefined!! printf("{%05.s}\n", 0);
 	//undefined!! printf("{%05.c}\n", 0);
-	printf("{%05.Z}\n", 0);
-	printf("{%05.%}\n", 0);
-	printf("%#.3o\n", 1);
+	printf("r.5.{%05.Z}\n", 0);
+	printf("r.6.{%05.%}\n", 0);
+	printf("r.7.%#.3o\n", 1);
+
+	ft_printf("m.5.{%05.Z}\n", 0);
+	ft_printf("m.6.{%05.%}\n", 0);
+	ft_printf("m.7.%#.3o\n", 1);
 	//min width flag 0 -------------------------------
 	// undefined!! printf("{%05s}\n", "abc");
 	// undefined!! printf("{%03c}\n", 0);

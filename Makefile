@@ -28,6 +28,8 @@ LIBFT = libft/ft_atoi.c\
 		libft/ft_power_ull.c\
 		libft/ft_numlen_ll.c\
 		libft/ft_numlen_ull.c\
+		libft/ft_putstr.c\
+		libft/ft_putchar.c\
 
 LIBFTDIR = libft
 

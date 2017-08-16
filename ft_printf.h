@@ -24,6 +24,7 @@ typedef	struct		s_flags
 	int				presicion;
 	int				length;
 	int				spec;
+	char			invalid_spec;
 	bool			caps;
 	int				written_chars;
 }					t_flags;
