@@ -32,7 +32,7 @@ int					ft_printf(const char *format, ...)
 	{
 		format = print_format_string(format, &flags);
 		format = check_flags(format, &flags);
-		format = check_width_presicion(format, &flags);
+		format = check_width_precision(format, &flags);
 		format = check_length(format, &flags);
 		format = check_specifier(format, &flags);
 		if (flags.spec != 0)

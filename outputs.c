@@ -56,7 +56,7 @@ void			ft_putnbr_mem(t_flags *flags, intmax_t nbr, int base)
 	}
 	while (nbr == 0 && power > 0)
 	{
-		if (flags->presicion != 0)
+		if (flags->precision != 0)
 			ft_putchar_mem(flags, '0');
 		power = power / base;
 	}
@@ -80,7 +80,7 @@ void			ft_putunbr_mem(t_flags *flags, uintmax_t nbr, int base)
 	}
 	while (nbr == 0 && power > 0)
 	{
-		if (flags->presicion != 0 || (flags->flag & 0b1000 && flags->spec == 3))
+		if (flags->precision != 0 || (flags->flag & 0b1000 && flags->spec == 3))
 			ft_putchar_mem(flags, '0');
 		power = power / base;
 	}

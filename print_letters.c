@@ -43,14 +43,14 @@ void			print_string(t_flags *flags, va_list *arg)
 		string = "(null)";
 	length = (int)ft_strlen(string);
 	spaces = flags->width - length;
-	if (flags->presicion < length && flags->presicion != -1)
-		spaces = spaces - (flags->presicion - length);
+	if (flags->precision < length && flags->precision != -1)
+		spaces = spaces - (flags->precision - length);
 	while (!(flags->flag & 0b1) && spaces-- > 0)
 		ft_putchar_mem(flags, ' ');
 	while (string[i] != '\0')
 	{
-		if (flags->presicion != -1)
-			if ((i + 1) > flags->presicion)
+		if (flags->precision != -1)
+			if ((i + 1) > flags->precision)
 				break ;
 		ft_putchar_mem(flags, string[i++]);
 	}

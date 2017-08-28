@@ -6,7 +6,7 @@
 /*   By: dgerard <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/18 11:32:52 by dgerard           #+#    #+#             */
-/*   Updated: 2017/08/14 20:41:43 by dgerard          ###   ########.fr       */
+/*   Updated: 2017/08/23 16:50:53 by dgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ typedef	struct		s_flags
 {
 	unsigned char	flag;
 	int				width;
-	int				presicion;
+	int				precision;
 	int				length;
 	int				spec;
 	char			invalid_spec;
@@ -43,7 +43,7 @@ void				print_unsigned(t_flags *flags, va_list *arg, int base);
 intmax_t			typecast_num(t_flags *flags, intmax_t nbr);
 uintmax_t			typecast_unum(t_flags *flags, uintmax_t nbr);
 const char			*check_flags(const char *format, t_flags *flags);
-const char			*check_width_presicion(const char *format, t_flags *flags);
+const char			*check_width_precision(const char *format, t_flags *flags);
 const char			*check_length(const char *format, t_flags *flags);
 const char			*check_specifier(const char *format, t_flags *flags);
 

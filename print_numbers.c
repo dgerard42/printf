@@ -17,8 +17,8 @@ int				zeroes_signed(t_flags *flags, intmax_t nbr, int base)
 	int zeroes;
 
 	zeroes = 0;
-	if (flags->presicion >= ft_numlen_ll(nbr, base))
-		zeroes = flags->presicion - ft_numlen_ll(nbr, base);
+	if (flags->precision >= ft_numlen_ll(nbr, base))
+		zeroes = flags->precision - ft_numlen_ll(nbr, base);
 	else if (flags->flag & 0b10000 && flags->width > 0 && !(flags->flag & 0b1))
 	{
 		zeroes = flags->width - ft_numlen_ll(nbr, base);
@@ -39,7 +39,7 @@ void			print_signed(t_flags *flags, va_list *arg, int base)
 	nbr = typecast_num(flags, nbr);
 	zeroes = zeroes_signed(flags, nbr, base);
 	spaces = flags->width - ft_numlen_ll(nbr, base) - zeroes;
-	if (nbr == 0 && flags->presicion == 0)
+	if (nbr == 0 && flags->precision == 0)
 		spaces++;
 	if (nbr < 0 || flags->flag & 0b10 || flags->flag & 0b100)
 		spaces--;
@@ -59,8 +59,8 @@ int				zeroes_unsigned(t_flags *flags, uintmax_t nbr, int base)
 	int zeroes;
 
 	zeroes = 0;
-	if (flags->presicion >= ft_numlen_ull(nbr, base))
-		zeroes = flags->presicion - ft_numlen_ull(nbr, base);
+	if (flags->precision >= ft_numlen_ull(nbr, base))
+		zeroes = flags->precision - ft_numlen_ull(nbr, base);
 	else if (flags->flag & 0b10000 && flags->width > 0 && !(flags->flag & 0b1))
 	{
 		zeroes = flags->width - ft_numlen_ull(nbr, base);
@@ -82,10 +82,10 @@ void			print_unsigned(t_flags *flags, va_list *arg, int base)
 	nbr = va_arg(*(arg), uintmax_t);
 	nbr = typecast_unum(flags, nbr);
 	zeroes = zeroes_unsigned(flags, nbr, base);
-	spaces = flags->width - ft_numlen_ll(nbr, base) - zeroes;
+	spaces = flags->width - ft_numlen_ull(nbr, base) - zeroes;
 	if (flags->flag & 1000 && flags->spec == 3)
 		zeroes--;
-	if (nbr == 0 && flags->presicion == 0)
+	if (nbr == 0 && flags->precision == 0)
 		spaces++;
 	if ((flags->flag & 0b1000 && flags->spec == 6) || flags->spec == 7)
 		spaces = spaces - 2;

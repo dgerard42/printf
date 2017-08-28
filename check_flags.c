@@ -45,22 +45,22 @@ const char			*check_flags(const char *format, t_flags *flags)
 	return (format);
 }
 
-const char			*check_width_presicion(const char *format, t_flags *flags)
+const char			*check_width_precision(const char *format, t_flags *flags)
 {
 	flags->width = 0;
-	flags->presicion = -1;
+	flags->precision = -1;
 	if (ft_isdigit((int)*format))
 		flags->width = ft_atoi(format);
 	while (flags->width != 0 && ft_isdigit((int)*format))
 		format++;
 	if (*format == '.')
 	{
-		flags->presicion = 0;
+		flags->precision = 0;
 		format++;
 	}
 	if (ft_isdigit((int)*format))
-		flags->presicion = ft_atoi(format);
-	while (flags->presicion != -1 && ft_isdigit((int)*format))
+		flags->precision = ft_atoi(format);
+	while (flags->precision != -1 && ft_isdigit((int)*format))
 		format++;
 	return (format);
 }
